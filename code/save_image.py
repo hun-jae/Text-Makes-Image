@@ -1,3 +1,38 @@
+from PIL import Image
+#from IPython.display import display
+import torch as th
+import torch.nn as nn
+
+from glide_text2im.clip.model_creation import create_clip_model
+from glide_text2im.download import load_checkpoint
+from glide_text2im.model_creation import (
+    create_model_and_diffusion,
+    model_and_diffusion_defaults,
+    model_and_diffusion_defaults_upsampler,
+)
+from glide_text2im.tokenizer.simple_tokenizer import SimpleTokenizer
+has_cuda = th.cuda.is_available()
+device = th.device('cpu' if not has_cuda else 'cuda')
+
+options = model_and_diffusion_defaults()
+options['use_fp16'] = has_cuda
+options['timestep_respacing'] = '100' # use 100 diffusion steps for fast sampling
+model, diffusion = create_model_and_diffusion(**options)
+
+model.load_state_dict(th.load("glide_model_cache/base.pt", map_location=th.device(device)))
+
+options_up = model_and_diffusion_defaults_upsampler()
+options_up['use_fp16'] = has_cuda
+options_up['timestep_respacing'] = 'fast27' # use 27 diffusion steps for very fast sampling
+model_up, diffusion_up = create_model_and_diffusion(**options_up)
+
+model_up.load_state_dict(th.load("glide_model_cache/upsample.pt", map_location=th.device(device)))
+
+clip_model = create_clip_model(device=device)
+clip_model.image_encoder.load_state_dict(th.load("glide_model_cache/clip_image_enc.pt", map_location=th.device(device)))
+clip_model.text_encoder.load_state_dict(th.load("glide_model_cache/clip_text_enc.pt", map_location=th.device(device)))
+
+
 def show_images(batch: th.Tensor):
     """ Display a batch of images inline. """
     scaled = ((batch + 1)*127.5).round().clamp(0,255).to(th.uint8).cpu()
@@ -8,7 +43,7 @@ def show_images(batch: th.Tensor):
     #display(Image.fromarray(reshaped.numpy()))
 
 # Sampling parameters
-prompt = "an oil painting of a corgi"
+prompt = "a corgi"
 batch_size = 1
 guidance_scale = 3.0
 
