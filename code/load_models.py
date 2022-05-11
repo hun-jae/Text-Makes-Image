@@ -27,6 +27,7 @@ model, diffusion = create_model_and_diffusion(**options)
 model.eval()
 if has_cuda:
     model.convert_to_fp16()
+print("here")
 model.to(device)
 model.load_state_dict(load_checkpoint('base', device))
 print('total base parameters', sum(x.numel() for x in model.parameters()))
@@ -39,11 +40,13 @@ model_up, diffusion_up = create_model_and_diffusion(**options_up)
 model_up.eval()
 if has_cuda:
     model_up.convert_to_fp16()
+print("here")
 model_up.to(device)
 model_up.load_state_dict(load_checkpoint('upsample', device))
 print('total upsampler parameters', sum(x.numel() for x in model_up.parameters()))
 
 # Create CLIP model.
 clip_model = create_clip_model(device=device)
+print("here")
 clip_model.image_encoder.load_state_dict(load_checkpoint('clip/image-enc', device))
 clip_model.text_encoder.load_state_dict(load_checkpoint('clip/text-enc', device))
