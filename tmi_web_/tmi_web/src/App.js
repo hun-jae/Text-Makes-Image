@@ -5,15 +5,7 @@ import axios from "axios";
 function App() {
   let [inputValue, setInputValue] = useState("");
 
-  function postToServer() {
-    axios
-      .post(inputValue)
-      .then(function (response) {
-        alert(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+  function runPython() {    
   }
 
   return (
@@ -24,7 +16,7 @@ function App() {
         style={{ width: "500px", height: "300px" }}
         onChange={(e) => setInputValue(e.target.value)}
       ></textarea>
-      <button>Enter</button>
+      <button onClick={runPython}>Enter</button>
       {inputValue}
     </div>
   );
