@@ -21,11 +21,17 @@ model, diffusion = create_model_and_diffusion(**options)
 
 model.load_state_dict(th.load("glide_model_cache/base.pt", map_location=th.device(device)))
 
+if has_cuda:
+    model.convert_to_fp16()
+model.to(device)
+
 options_up = model_and_diffusion_defaults_upsampler()
 options_up['use_fp16'] = has_cuda
 options_up['timestep_respacing'] = 'fast27' # use 27 diffusion steps for very fast sampling
 model_up, diffusion_up = create_model_and_diffusion(**options_up)
-
+if has_cuda:
+    model_up.convert_to_fp16()
+model_up.to(device)
 model_up.load_state_dict(th.load("glide_model_cache/upsample.pt", map_location=th.device(device)))
 
 clip_model = create_clip_model(device=device)
@@ -39,7 +45,7 @@ def show_images(batch: th.Tensor):
     reshaped = scaled.permute(2, 0, 3, 1).reshape([batch.shape[2], -1, 3])
     img = Image.fromarray(reshaped.numpy())
     img.save('result.jpg','JPEG')
-    img.show()
+    #img.show()
     #display(Image.fromarray(reshaped.numpy()))
 
 # Sampling parameters
