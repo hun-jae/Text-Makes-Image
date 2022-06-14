@@ -1,41 +1,8 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { useUserContext } from "../components/useUserContext";
 import { fetchLogin } from "../components/fetchLogin";
 import { useNavigate } from "react-router-dom";
-
-const Container = styled.div`
-  margin-top: 100px;
-  padding: 20px;
-`;
-
-const Input = styled.input`
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 40px;
-  margin: 0 0 8px;
-  padding: 5px 39px 5px 11px;
-  border: solid 1px #dadada;
-  background: #fff;
-  box-sizing: border-box;
-`;
-
-const Button = styled.div`
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 49px;
-  display: block;
-  width: 100%;
-  height: 49px;
-  margin: 16px 0 7px;
-  cursor: pointer;
-  text-align: center;
-  color: #fff;
-  border: none;
-  border-radius: 0;
-  background-color: #03c75a;
-`;
+import { Container, Input, Button } from "./styled";
 
 function LoginForm() {
 //글로벌 전역 상태값 setUser를 받아옴
@@ -43,9 +10,7 @@ function LoginForm() {
   const setUser = useUserContext();
 
   //url 이동을 위한 useNavigate
-
-  const history = useNavigate
-();
+  const history = useNavigate();
 
   //input에서 입력한 아이디와 비밀번호 정보를 담기위한 state
   const [account, setAccount] = useState({
@@ -81,7 +46,7 @@ function LoginForm() {
   };
   return (
     <Container>
-        <h3>Text-to-Image</h3>
+        <h1>Text-to-Image</h1>
       <Input
         id="id"
         name="id"
@@ -96,6 +61,12 @@ function LoginForm() {
         onChange={onChangeAccount}
       />
       <Button onClick={onSubmitAccount}>로그인</Button>
+      <div>
+        <a href="#">아이디 찾기</a>
+      </div>
+      <div>
+        <a href="#">비밀번호 찾기</a>
+      </div>
     </Container>
   );
 }

@@ -108,7 +108,7 @@ function GetImg() {
           </li>
         ))}
       </ul>
-      // button을 클릭하면 API를 다시 불러와줍니다.
+      {/* button을 클릭하면 API를 다시 불러와줍니다. */}
       <button onClick={fetchImg}>다시 불러오기</button>
     </div>
   );

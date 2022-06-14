@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import * as auth from "../components/auth";
 import { useNavigate } from "react-router-dom";
+import { Input, Button } from "./styled";
+
 
 function Login() {
   const [userId, setUserId] = useState("");
@@ -19,9 +21,19 @@ function Login() {
 
   return (
     <div>
-      <input value={userId} onChange={(e) => setUserId(e.target.value)} />
-      <input value={password} onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={submit}>로그인</button>
+      <h1>TMI 로그인</h1>
+      <Input id="id"
+        name="id"
+        placeholder="ID"
+        value={userId} 
+        onChange={(e) => setUserId(e.target.value)} 
+      />
+      <Input id="password"
+        name="password"
+        placeholder="Password"
+        value={password} onChange={(e) => setPassword(e.target.value)} 
+      />
+      <Button onClick={submit}>로그인</Button>
     </div>
   );
 }
