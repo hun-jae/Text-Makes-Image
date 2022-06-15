@@ -1,13 +1,13 @@
 import axios from "axios";
 
-export const duplicateCheck = async(props) => {
-    const url = "tmirds-1.ct5eslf4luye.ap-northeast-2.rds.amazonaws.com";
-    
-    axios.get(url)
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-}
+export const duplicateCheck = async (props) => {
+  axios.get("/get/user").then(function (response) {
+    if(response.data[0].uid === props.uid){
+      alert("Duplicated ID!");
+      return window.location.reload();
+    }
+    else{
+      alert("You can use this ID");
+    }
+  });
+};

@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "root",
+    "password": "tmirdspw",
+    "database": "users",
+    "host": "tmirds-1.ct5eslf4luye.ap-northeast-2.rds.amazonaws.com",
+    "port": "3306",
+    "dialect": "mysql"
+  }
+}

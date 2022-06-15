@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Navigate, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import LoginForm from "./pages/LoginForm";
 import SignUp from "./pages/SignUp";
@@ -7,7 +7,7 @@ import MainPage from "./pages/MainPage";
 import FileUpload from "./pages/FileUpload";
 
 function RoutesPage() {
-  let isAuthorized = sessionStorage.getItem("isAuthorized");
+  // let isAuthorized = sessionStorage.getItem("isAuthorized");
 
   return (
     <div>
