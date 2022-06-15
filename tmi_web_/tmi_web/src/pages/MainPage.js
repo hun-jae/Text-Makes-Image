@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useUserContext } from "../components/useUserContext";
 import { Container, Input, Button } from "./styled";
 

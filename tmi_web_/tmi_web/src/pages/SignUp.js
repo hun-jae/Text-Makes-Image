@@ -1,20 +1,11 @@
 import React, { useState } from "react";
-import { useUserContext } from "../components/useUserContext";
-import { useNavigate } from "react-router-dom";
 import { fetchSignUp } from "../components/fetchSignUp";
 import { duplicateCheck } from "../components/duplicateCheck";
 import { Link } from "react-router-dom";
 import { Container, Input, Button } from "./styled";
 
 function SignUp() {
-  // 글로벌 전역 상태값 setUser를 받아옴
-  // 로그인이 성공적으로 이루어지면 user에 상태값을 넣어줘야지 나중에 다른 컴포넌트에서도 user값을 이용하여 다른 것들을 할 수 있음
-  const setUser = useUserContext();
-
-  //url 이동을 위한 useNavigate
-  const history = useNavigate();
-
-  //input에서 입력한 아이디와 비밀번호 정보를 담기위한 state
+  //input에서 입력한 유저 정보를 담기위한 state
   const [account, setAccount] = useState({
     uid: "",
     password: "",
@@ -57,7 +48,6 @@ function SignUp() {
     }
     try {
       const user = await fetchSignUp(account);
-
     } catch (error) {
       //실패하면 error 출력
       window.alert(error);
@@ -98,7 +88,7 @@ function SignUp() {
       ></Input>
       <Button onClick={onSubmitAccount}>회원가입</Button>
       <div>
-        이미 회원이신가요? 
+        이미 회원이신가요?
         <Link to="/loginForm"> 로그인 하러가기</Link>
       </div>
     </Container>

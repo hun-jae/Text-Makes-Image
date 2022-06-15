@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import AWS from "aws-sdk";
 import { Row, Col, Button, Input, Alert } from "reactstrap";
 
-// https://codegear.tistory.com/7
-
 export function S3upload() {
   const [progress, setProgress] = useState(0);
   const [selectedFile, setSelectedFile] = useState(null);
