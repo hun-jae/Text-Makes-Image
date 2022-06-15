@@ -1,22 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useUserContext } from "../components/useUserContext";
+import { Container, Input, Button } from "./styled";
 
-function MainPage(history) {
+function MainPage() {
   const user = useUserContext();
+
+  const handleSignUp = (e) =>{
+    e.preventDefault();
+    window.location.href= "/signUp";
+  };
+  const handleLogin = (e) =>{
+    e.preventDefault();
+    window.location.href= "/loginForm";
+  };
+
+
+
   return (
-    <div>
+    <Container>
       <h1>Text-Makes-Image</h1>
       <div>
-        <Link to="/loginForm">로그인폼</Link>
+        <Button onClick={handleLogin}>로그인</Button>
       </div>
       <div>
-        <Link to="/signUp">회원가입</Link>
+        <Button onClick={handleSignUp}>회원가입</Button>
       </div>
       {/* <div>
         <Link to="/fileUpload">파일업로드</Link>
       </div> */}
-    </div>
+    </Container>
   );
 }
 

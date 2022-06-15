@@ -13,7 +13,7 @@ export const fetchSignUp = async (props) => {
   });
 
   if (res.data) {
-    alert("Success!");
+    alert("Sign Up Success!");
     return window.location.reload();
   }
 };

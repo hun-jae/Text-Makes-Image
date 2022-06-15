@@ -1,3 +1,4 @@
+// express 모듈 불러오기
 const express = require("express");
 const app = express();
 
@@ -16,6 +17,7 @@ const {
 } = require("./models");
 sequelize.query("SET NAMES utf8;");
 
+// DB에 사용자 추가
 app.post("/add/user", (req, res) => {
   console.log(req.data);
 
@@ -33,6 +35,7 @@ app.post("/add/user", (req, res) => {
     });
 });
 
+// DB에서 모든 user get
 app.get("/get/user", (req, res) => {
   console.log(req);
   User.findAll()
@@ -43,6 +46,7 @@ app.get("/get/user", (req, res) => {
       throw err;
     });
 });
+
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {

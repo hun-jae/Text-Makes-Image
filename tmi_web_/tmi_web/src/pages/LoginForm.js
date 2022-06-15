@@ -33,7 +33,7 @@ function LoginForm() {
       const user = await fetchLogin(account);
 
       //성공하면 해당 user 아이디 패스워드값 셋팅
-      // setUser(user);
+      // setUser.setUser();
       //성공하면 해당 url로 이동(main페이지로)
       // history.replace("/");
     } catch (error) {

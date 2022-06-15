@@ -1,13 +1,17 @@
 import axios from "axios";
 
 export const duplicateCheck = async (props) => {
+  let flag = false;
   axios.get("/get/user").then(function (response) {
-    if(response.data[0].uid === props.uid){
-      alert("Duplicated ID!");
-      return window.location.reload();
-    }
-    else{
-      alert("You can use this ID");
+    response.data.map(function (el) {
+      if (el.uid === props.uid) {
+        window.alert("Duplicated ID!");
+        flag = true;
+        return window.location.reload();
+      }
+    });
+    if (!flag) {
+      window.alert("You can use this ID!");
     }
   });
 };
