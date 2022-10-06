@@ -16,6 +16,7 @@ function Nav_() {
         <Navbar key={expand} bg="light" expand={expand} className="mb-3">
           <Container fluid>
             <Button
+              variant="outline-secondary"
               onClick={() => {
                 navigate(-1);
               }}
@@ -43,13 +44,17 @@ function Nav_() {
                     <Link to="/login">Login</Link>
                   </Nav.Link>
                   <Nav.Link>
-                    <Link to="/">Logout</Link>
+                    <Link to="/join">Join</Link>
                   </Nav.Link>
                   <Nav.Link>
                     <Link to="/membersetting">Setting</Link>
                   </Nav.Link>
-                  <Nav.Link href="/">Write</Nav.Link>
-                  <Nav.Link href="/">Saved</Nav.Link>
+                  <Nav.Link>
+                    <Link to="/write">Write</Link>
+                  </Nav.Link>
+                  <Nav.Link>
+                    <Link to="/withdrawal">Withdrawal</Link>
+                  </Nav.Link>
                   <NavDropdown
                     title="Dropdown"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
