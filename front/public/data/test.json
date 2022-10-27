@@ -1,0 +1,56 @@
+[
+  {
+    "subject": "1번째 일기",
+    "date": "2022/10/01",
+    "representative_img": "test_img/1.jpg",
+    "content": "한강 불꽃 축제"
+  },
+  {
+    "subject": "2번째 일기",
+    "date": "2022/10/02",
+    "representative_img": "test_img/2.jpg",
+    "content": "춘식이"
+  },
+  {
+    "subject": "3번째 일기",
+    "date": "2022/10/03",
+    "representative_img": "test_img/3.jpg",
+    "content": "아이유 콘서트"
+  },
+  {
+    "subject": "4번째 일기",
+    "date": "2022/10/04",
+    "representative_img": "test_img/4.jpg",
+    "content": "미니언즈"
+  },
+  {
+    "subject": "5번째 일기",
+    "date": "2022/10/05",
+    "representative_img": "test_img/5.jpg",
+    "content": "백남준"
+  },
+  {
+    "subject": "6번째 일기",
+    "date": "2022/10/06",
+    "representative_img": "test_img/6.jpg",
+    "content": "초코빙수"
+  },
+  {
+    "subject": "7번째 일기",
+    "date": "2022/10/07",
+    "representative_img": "test_img/7.jpg",
+    "content": "스테이크"
+  },
+  {
+    "subject": "8번째 일기",
+    "date": "2022/10/08",
+    "representative_img": "test_img/8.jpg",
+    "content": "비행기"
+  },
+  {
+    "subject": "9번째 일기",
+    "date": "2022/10/09",
+    "representative_img": "test_img/9.jpg",
+    "content": "초코에몽"
+  }
+]
