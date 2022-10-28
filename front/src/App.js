@@ -9,13 +9,15 @@ import Write from "./pages/Write";
 import Withdrawal from "./pages/Withdrawal";
 import FindID from "./pages/FindID";
 import FindPW from "./pages/FindPW";
+import Feed from "./pages/Feed";
 
 function App() {
   return (
     <div className="App">
       <Nav_ />
       <Routes>
-        <Route path="/" element={"Main page"} />
+        <Route path="/" element={"Home"} />
+        <Route path="/feed" element={<Feed />} />
         <Route path="/login" element={<Login />} />
         <Route path="/membersetting" element={<MemberSetting />} />
         <Route path="/join" element={<Join />} />
