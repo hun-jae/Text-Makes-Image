@@ -22,12 +22,12 @@ function Join() {
   const handleMsg = (n) => {
     const emailReg =
       /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-    
+
     if (emailReg.test(user.email)) {
       setMsg({ ...msg, [n]: "이메일이 유효하지 않습니다." });
     }
   };
-  
+
   const onChangeUser = (e) => {
     setUser({
       ...user,
@@ -38,7 +38,7 @@ function Join() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user)
+    console.log(user);
     // axios
     //   .post("http://localhost:3000/data/userdata.json", user)
     //   .then((result) => {
