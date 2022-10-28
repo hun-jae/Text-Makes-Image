@@ -1,22 +1,20 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { Link, useNavigate } from "react-router-dom";
 
 function Nav_() {
   let navigate = useNavigate();
 
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen)
-  }
+    setMenuOpen(!menuOpen);
+  };
 
-  const handleClose = () => setMenuOpen(false)
+  const handleClose = () => setMenuOpen(false);
 
   return (
     <div>
@@ -34,7 +32,7 @@ function Nav_() {
       </style>
 
       {["lg"].map((expand) => (
-        <Navbar key={expand} variant='top' expand={expand} className="mb-3">
+        <Navbar key={expand} variant="top" expand={expand} className="mb-3">
           <Container fluid>
             <Button
               variant="outline-light"
@@ -45,13 +43,14 @@ function Nav_() {
               뒤로가기
             </Button>
             <Navbar.Brand href="/">TMI</Navbar.Brand>
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} 
-            onClick={toggleMenu}
+            <Navbar.Toggle
+              aria-controls={`offcanvasNavbar-expand-${expand}`}
+              onClick={toggleMenu}
             />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-              placement="end" 
+              placement="end"
               /** Add these props */
               restoreFocus={false}
               show={menuOpen}
@@ -65,22 +64,39 @@ function Nav_() {
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <Nav.Link>
-                    <Link to="/" onClick={toggleMenu}>Home</Link>
+                    <Link to="/" onClick={toggleMenu}>
+                      Home
+                    </Link>
                   </Nav.Link>
                   <Nav.Link>
-                    <Link to="/login" onClick={toggleMenu}>Login</Link>
+                    <Link to="/login" onClick={toggleMenu}>
+                      Login
+                    </Link>
                   </Nav.Link>
                   <Nav.Link>
-                    <Link to="/join" onClick={toggleMenu}>Join</Link>
+                    <Link to="/join" onClick={toggleMenu}>
+                      Join
+                    </Link>
                   </Nav.Link>
                   <Nav.Link>
-                    <Link to="/membersetting" onClick={toggleMenu}>Setting</Link>
+                    <Link to="/feed" onClick={toggleMenu}>
+                      Feed
+                    </Link>
                   </Nav.Link>
                   <Nav.Link>
-                    <Link to="/write" onClick={toggleMenu}>Write</Link>
+                    <Link to="/membersetting" onClick={toggleMenu}>
+                      Setting
+                    </Link>
                   </Nav.Link>
                   <Nav.Link>
-                    <Link to="/withdrawal" onClick={toggleMenu}>Withdrawal</Link>
+                    <Link to="/write" onClick={toggleMenu}>
+                      Write
+                    </Link>
+                  </Nav.Link>
+                  <Nav.Link>
+                    <Link to="/withdrawal" onClick={toggleMenu}>
+                      Withdrawal
+                    </Link>
                   </Nav.Link>
                   {/* <NavDropdown
                     title="Dropdown"
