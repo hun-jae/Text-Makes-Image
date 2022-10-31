@@ -1,46 +1,13 @@
 import { useState } from "react";
 import { Form, Row, Col, Button, Container } from "react-bootstrap";
 import axios from "axios";
+import { useForm } from "react-hook-form";
 
 function Join() {
-  const [user, setUser] = useState({
-    email: "",
-    uid: "",
-    nickname: "",
-    password: "",
-  });
-  const [passwordcheck, setPasswordcheck] = useState("");
-  const [pwsame, setPwsame] = useState(false);
-
-  const [msg, setMsg] = useState({
-    emailMsg: "",
-    uidMsg: "",
-    pwMsg: "",
-    pwChkMsg: "",
-  });
-
-  const handleMsg = (n) => {
-    const emailReg =
-      /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-
-    if (emailReg.test(user.email)) {
-      setMsg({ ...msg, [n]: "이메일이 유효하지 않습니다." });
-    }
-  };
-
-  const onChangeUser = (e) => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value,
-    });
-    handleMsg(e.target.name);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(user);
+  const onSubmit = (data) => {
+    console.log("데이터::", data);
     // axios
-    //   .post("http://localhost:3000/data/userdata.json", user)
+    //   .post("http://localhost:3000/data/userdata.json", data)
     //   .then((result) => {
     //     alert("회원가입 완료!");
     //     window.location.replace("/");
@@ -50,11 +17,30 @@ function Join() {
     //   });
   };
 
+  const onError = (errors) => {
+    console.log(errors)
+  }
+
+  // react-hook-form
+  const {register, handleSubmit, formState:{errors}, getValues } = useForm({mode: "onBlur"});
+
+  // 비밀번호 확인
+  const pwChkValidateCheck = (value) => {
+    const pw = getValues("password");
+    const pwChk = getValues("pwChk");
+    if(pw !== pwChk){
+      return "비밀번호와 비밀번호 확인이 일치하지 않습니다";
+    }
+    else{
+      return true;
+    }
+  };
+
   return (
     <Container>
-      <Form onChange={handleSubmit}>
+      <Form onSubmit={handleSubmit(onSubmit, onError)}>
         <Form.Label variant="subject">회원 가입</Form.Label>
-        <Form.Group as={Row} className="mb-3" controlId="JoinFormID">
+        <Form.Group as={Row} className="mb-3" controlId="JoinFormEmail">
           <Form.Label column sm={3}>
             Email
           </Form.Label>
@@ -63,10 +49,20 @@ function Join() {
               name="email"
               type="email"
               placeholder="Email"
-              onChange={onChangeUser}
+              {...register('email', {
+                required : "이메일을 입력해주세요.",
+                pattern: {
+                  value: /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/,
+                  message: "이메일 형식이 올바르지 않습니다."
+                }
+              })}
             />
           </Col>
-          <p name="emailMsg">{msg.emailMsg}</p>
+          {errors.email && (
+            <Form.Text className="text-danger">
+              {errors.email.message}
+            </Form.Text>
+          )}
         </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="JoinFormID">
           <Form.Label column sm={3}>
@@ -77,10 +73,20 @@ function Join() {
               name="uid"
               type="text"
               placeholder="ID"
-              onChange={onChangeUser}
+              {...register('uid', {
+                required : "아이디를 입력해주세요.",
+                pattern: {
+                  value: /^[A-za-z]+[A-za-z0-9]{4,14}$/,
+                  message: "아이디는 5~15자 이내 영문자로 시작하여야하고 영문자와 숫자만 사용 가능합니다."
+                }
+              })}
             ></Form.Control>
           </Col>
-          <p name="uidMsg">{msg.uidMsg}</p>
+          {errors.uid && (
+            <Form.Text className="text-danger">
+              {errors.uid.message}
+            </Form.Text>
+          )}
         </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="JoinFormNickname">
           <Form.Label column sm={3}>
@@ -91,9 +97,20 @@ function Join() {
               name="nickname"
               type="text"
               placeholder="Nickname"
-              onChange={onChangeUser}
+              {...register('nickname', {
+                required : "닉네임을 입력해주세요.",
+                pattern: {
+                  value: /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,8}$/,
+                  message: "닉네임은 2~8자로 입력해주세요."
+                }
+              })}
             ></Form.Control>
           </Col>
+          {errors.nickname && 
+            <Form.Text className="text-danger">
+            {errors.nickname.message}
+          </Form.Text>
+          }
         </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="JoinFormPW">
           <Form.Label column sm={3}>
@@ -104,10 +121,20 @@ function Join() {
               name="password"
               type="password"
               placeholder="Password"
-              onChange={onChangeUser}
+              {...register('password', {
+                required : "비밀번호를 입력해주세요.",
+                pattern: {
+                  value: /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/,
+                  message: "비밀번호는 영문+숫자+특수기호(!@#$%^+-=)를 1개 이상 조합하여야 합니다"
+                }
+              })}
             ></Form.Control>
           </Col>
-          <p name="pwMsg">{msg.pwMsg}</p>
+          {errors.password && (
+            <Form.Text className="text-danger">
+              {errors.password.message}
+            </Form.Text>
+          )}
         </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="JoinFormPWCheck">
           <Form.Label column sm={3}>
@@ -117,12 +144,17 @@ function Join() {
             <Form.Control
               type="password"
               placeholder="Password Check"
-              onChange={(e) => {
-                setPasswordcheck(e.target.value);
-              }}
+              {...register("pwChk",{
+                required: "비밀번호 확인을 입력해주세요",
+                validate: pwChkValidateCheck
+              })}
             ></Form.Control>
           </Col>
-          <p name="pwChkMsg">{msg.pwChkMsg}</p>
+          {errors.pwChk && (
+            <Form.Text>
+              {errors.pwChk.message}
+            </Form.Text>
+          )}
         </Form.Group>
         <Button className="mb-3" variant="outline-secondary" type="submit">
           확인
