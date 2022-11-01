@@ -1,6 +1,9 @@
 import { Form, Row, Col, Button, Container } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 
-function MemberSetting() {
+function MemberSetting({ user }) {
+  const {register, handleSubmit} = useForm();
+  const { uid, nickname, password} = user || {};
   return (
     <Container>
       <Form>
@@ -10,7 +13,7 @@ function MemberSetting() {
             ID
           </Form.Label>
           <Col>
-            <Form.Control type="text" placeholder="ID" disabled></Form.Control>
+            <Form.Control type="text" placeholder="ID" disabled>{uid}</Form.Control>
           </Col>
         </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="MSFormNickname">
