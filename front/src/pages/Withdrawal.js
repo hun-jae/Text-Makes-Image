@@ -1,12 +1,11 @@
-import axios from "axios";
 import { Form, Row, Col, Button, Container } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
 function Withdrawal() {
-  const {register, handleSubmit} = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = () => {
-    console.log()
+    console.log();
   };
 
   return (
@@ -18,11 +17,11 @@ function Withdrawal() {
             비밀번호
           </Form.Label>
           <Col>
-            <Form.Control 
-              type="password" 
+            <Form.Control
+              type="password"
               placeholder="Password"
               {...register("password")}
-              />
+            />
           </Col>
         </Form.Group>
         <Button className="mb-3" variant="outline-secondary" type="submit">
