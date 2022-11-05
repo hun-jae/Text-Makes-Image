@@ -1,0 +1,20 @@
+[
+  {
+    "sentence": "sentence1",
+    "img1": "test_img/1.jpg",
+    "img2": "test_img/2.jpg",
+    "img3": "test_img/3.jpg"
+  },
+  {
+    "sentence": "sentence2",
+    "img1": "test_img/4.jpg",
+    "img2": "test_img/5.jpg",
+    "img3": "test_img/6.jpg"
+  },
+  {
+    "sentence": "sentence3",
+    "img1": "test_img/7.jpg",
+    "img2": "test_img/8.jpg",
+    "img3": "test_img/9.jpg"
+  }
+]

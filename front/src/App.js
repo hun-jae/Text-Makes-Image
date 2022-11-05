@@ -10,6 +10,7 @@ import Withdrawal from "./pages/Withdrawal";
 import FindID from "./pages/FindID";
 import FindPW from "./pages/FindPW";
 import Feed from "./pages/Feed";
+import ImageResult from "./pages/ImageResult";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/withdrawal" element={<Withdrawal />} />
         <Route path="/findID" element={<FindID />} />
         <Route path="/findPW" element={<FindPW />} />
+        <Route path="/imageResult" element={<ImageResult />} />
       </Routes>
     </div>
   );
