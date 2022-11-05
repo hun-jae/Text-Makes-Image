@@ -5,6 +5,9 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { Link, useNavigate } from "react-router-dom";
+import { isLogin, deleteToken } from "../components/auth";
+import { TbArrowBackUp } from "react-icons/tb";
+import { AiOutlineHome } from "react-icons/ai";
 
 function Nav_() {
   let navigate = useNavigate();
@@ -40,7 +43,7 @@ function Nav_() {
                 navigate(-1);
               }}
             >
-              뒤로가기
+              <TbArrowBackUp size="24" />
             </Button>
             <Navbar.Brand href="/">TMI</Navbar.Brand>
             <Navbar.Toggle
@@ -65,39 +68,56 @@ function Nav_() {
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <Nav.Link>
                     <Link to="/" onClick={toggleMenu}>
-                      Home
+                      <AiOutlineHome size="28" />
                     </Link>
                   </Nav.Link>
-                  <Nav.Link>
-                    <Link to="/login" onClick={toggleMenu}>
-                      Login
-                    </Link>
-                  </Nav.Link>
-                  <Nav.Link>
-                    <Link to="/join" onClick={toggleMenu}>
-                      Join
-                    </Link>
-                  </Nav.Link>
-                  <Nav.Link>
-                    <Link to="/feed" onClick={toggleMenu}>
-                      Feed
-                    </Link>
-                  </Nav.Link>
-                  <Nav.Link>
-                    <Link to="/membersetting" onClick={toggleMenu}>
-                      Setting
-                    </Link>
-                  </Nav.Link>
-                  <Nav.Link>
-                    <Link to="/write" onClick={toggleMenu}>
-                      Write
-                    </Link>
-                  </Nav.Link>
-                  <Nav.Link>
-                    <Link to="/withdrawal" onClick={toggleMenu}>
-                      Withdrawal
-                    </Link>
-                  </Nav.Link>
+                  {isLogin() ? (
+                    <>
+                      <Nav.Link>
+                        <Link to="/feed" onClick={toggleMenu}>
+                          Feed
+                        </Link>
+                      </Nav.Link>
+                      <Nav.Link>
+                        <Link to="/membersetting" onClick={toggleMenu}>
+                          Setting
+                        </Link>
+                      </Nav.Link>
+                      <Nav.Link>
+                        <Link to="/write" onClick={toggleMenu}>
+                          Write
+                        </Link>
+                      </Nav.Link>
+                      <Nav.Link>
+                        <Link to="/withdrawal" onClick={toggleMenu}>
+                          Withdrawal
+                        </Link>
+                      </Nav.Link>
+                      <Button
+                        onClick={() => {
+                          deleteToken();
+                          navigate("/");
+                          toggleMenu();
+                        }}
+                      >
+                        로그아웃
+                      </Button>
+                    </>
+                  ) : (
+                    <span>
+                      <Nav.Link>
+                        <Link to="/login" onClick={toggleMenu}>
+                          Login
+                        </Link>
+                      </Nav.Link>
+                      <Nav.Link>
+                        <Link to="/join" onClick={toggleMenu}>
+                          Join
+                        </Link>
+                      </Nav.Link>
+                    </span>
+                  )}
+
                   {/* <NavDropdown
                     title="Dropdown"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
