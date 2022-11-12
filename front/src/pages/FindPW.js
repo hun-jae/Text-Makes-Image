@@ -5,13 +5,13 @@ function FindPW() {
   return (
     <Container>
       <Form>
-        <Form.Label>아이디 찾기</Form.Label>
+        <Form.Label>비밀번호 찾기</Form.Label>
         <Form.Group as={Row} className="mb-3" controlId="FindPWFormID">
           <Form.Label column sm={3}>
             ID
           </Form.Label>
           <Col>
-            <Form.Control type="text" placeholder="ID" disabled></Form.Control>
+            <Form.Control type="text" placeholder="ID"></Form.Control>
           </Col>
         </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="FindPWFormNickname">

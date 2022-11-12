@@ -7,7 +7,7 @@ function Feed() {
 
   return (
     <div>
-      <div>Nickname</div>
+      <div>{localStorage.getItem("uid")}</div>
       {data.map((idx, i) => {
         return <Img i={i} />;
       })}
@@ -17,6 +17,7 @@ function Feed() {
             .get("http://localhost:3000/data/test.json")
             .then((result) => {
               setData(result.data);
+              console.log(data);
             })
             .catch(() => {
               console.log("failed to load data");
