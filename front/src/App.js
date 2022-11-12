@@ -11,13 +11,14 @@ import FindID from "./pages/FindID";
 import FindPW from "./pages/FindPW";
 import Feed from "./pages/Feed";
 import ImageResult from "./pages/ImageResult";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <div className="App">
       <Nav_ />
       <Routes>
-        <Route path="/" element={"Home"} />
+        <Route path="/" element={<Home />} />
         <Route path="/feed" element={<Feed />} />
         <Route path="/login" element={<Login />} />
         <Route path="/membersetting" element={<MemberSetting />} />
