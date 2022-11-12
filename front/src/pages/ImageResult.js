@@ -1,42 +1,55 @@
+import SelectImg from "./SelectImg";
+import { useState, useEffect } from "react";
+import Loading from "../components/Loading";
+import { Button } from "react-bootstrap";
+import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import axios from "axios";
-import { useEffect, useState } from "react";
+// import localData from "./imageResult.json"; // for test
+import localData from "./localData.json"; // for test
 
 function ImageResult() {
-  const [data, setData] = useState([]);
-  const getData = async () => {
-    await axios
-      .get("http://localhost:3000/data/imageResult.json")
-      .then((result) => {
-        console.log("Then");
-        setData(result.data);
-      })
-      .catch((error) => {
-        console.log("Error::", error);
-      });
+  const [res, setRes] = useState([]);
+  const [loading, setLoading] = useState(null);
+  const [page, setPage] = useState(0);
+
+  const getData = () => {
+    // await axios.get(`./ImageResult.json`).then((res) => setRes(res));
+    console.log(localData);
+    setRes(localData);
   };
-  useEffect(getData);
+
+  useEffect(() => {
+    setLoading(true);
+    getData();
+    console.log("useEffect", res);
+  }, []);
+
   return (
     <div>
-      {data.map((s) => {
-        <div>
-          <h4>{s.sentence}</h4>
-          <Img data={s} />
-        </div>;
-      })}
+      {!loading ? (
+        <Loading />
+      ) : (
+        <>
+          <SelectImg data={res[page]} page={page} />
+          <Button
+            onClick={() => {
+              if (page > 0) setPage(page - 1);
+            }}
+          >
+            <BiLeftArrow />
+          </Button>
+          <Button
+            onClick={() => {
+              if (page < res.length - 1) setPage(page + 1);
+            }}
+          >
+            <BiRightArrow />
+          </Button>
+          <div>{page + 1 + " / " + res.length}</div>
+        </>
+      )}
     </div>
   );
-}
-
-function Img(props) {
-  return props.data.map(function (setence, i) {
-    return (
-      <div className="col-md-4">
-        <img src={setence.img1} width="100%"></img>
-        <img src={setence.img2} width="100%"></img>
-        <img src={setence.img3} width="100%"></img>
-      </div>
-    );
-  });
 }
 
 export default ImageResult;
