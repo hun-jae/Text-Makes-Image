@@ -66,33 +66,24 @@ function Nav_() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link>
-                    <Link to="/" onClick={toggleMenu}>
-                      <AiOutlineHome size="28" />
-                    </Link>
-                  </Nav.Link>
+                  <Link to="/" onClick={toggleMenu}>
+                    <AiOutlineHome size="28" />
+                  </Link>
+
                   {isLogin() ? (
                     <>
-                      <Nav.Link>
-                        <Link to="/feed" onClick={toggleMenu}>
-                          Feed
-                        </Link>
-                      </Nav.Link>
-                      <Nav.Link>
-                        <Link to="/membersetting" onClick={toggleMenu}>
-                          Setting
-                        </Link>
-                      </Nav.Link>
-                      <Nav.Link>
-                        <Link to="/write" onClick={toggleMenu}>
-                          Write
-                        </Link>
-                      </Nav.Link>
-                      <Nav.Link>
-                        <Link to="/withdrawal" onClick={toggleMenu}>
-                          Withdrawal
-                        </Link>
-                      </Nav.Link>
+                      <Link to="/feed" onClick={toggleMenu}>
+                        Feed
+                      </Link>
+                      <Link to="/membersetting" onClick={toggleMenu}>
+                        Setting
+                      </Link>
+                      <Link to="/write" onClick={toggleMenu}>
+                        Write
+                      </Link>
+                      <Link to="/withdrawal" onClick={toggleMenu}>
+                        Withdrawal
+                      </Link>
                       <Button
                         onClick={() => {
                           deleteToken();
@@ -104,18 +95,14 @@ function Nav_() {
                       </Button>
                     </>
                   ) : (
-                    <span>
-                      <Nav.Link>
-                        <Link to="/login" onClick={toggleMenu}>
-                          Login
-                        </Link>
-                      </Nav.Link>
-                      <Nav.Link>
-                        <Link to="/join" onClick={toggleMenu}>
-                          Join
-                        </Link>
-                      </Nav.Link>
-                    </span>
+                    <>
+                      <Link to="/login" onClick={toggleMenu}>
+                        Login
+                      </Link>
+                      <Link to="/join" onClick={toggleMenu}>
+                        Join
+                      </Link>
+                    </>
                   )}
 
                   {/* <NavDropdown
