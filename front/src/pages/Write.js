@@ -1,12 +1,31 @@
 import { Form, Button, Container } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Write() {
   const { register, handleSubmit } = useForm();
+  let navigate = useNavigate();
+
   const onSubmit = (data) => {
     console.log(data.content);
-
-    window.location.href = "/imageResult";
+    alert(data.content)
+    navigate("/imageResult");
+    // console.log("Submit Clicked!");
+    // axios
+    //   .post("주소", data)
+    //   .then((response) => {
+    //     console.log(response.status);
+    //     if (response.status === 200) {
+    //       alert("Submit Success");
+    //       window.location.href = "/imageResult";
+    //     } else {
+    //       alert("Submit Error!!");
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
 
   const onError = () => {
