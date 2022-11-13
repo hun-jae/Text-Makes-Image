@@ -1,22 +1,10 @@
 import { Button } from "react-bootstrap";
 
 function SelectImg(props) {
-  // const getData = async () => {
-  //   await axios
-  //     .get("http://localhost:3000/data/SelectImg.json")
-  //     .then((result) => {
-  //       console.log("Then");
-  //       setData(result.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log("Error::", error);
-  //     });
-  // };
-
   return (
     <div>
-      <h3>{props.data.sentence}</h3>
-      <Img img={props.data.img[0]} page={props.page} />
+      <h3>{props.text}</h3>
+      <Img url={props.url} page={props.page} />
     </div>
   );
 }
@@ -40,11 +28,11 @@ function SelectImg(props) {
 
 // One picture
 function Img(props) {
-  var url = props.img;
   // var url = "test_img/1.jpg";
   return (
     <div>
-      <img src={url} width="100%" />
+      <img src={props.url} width="100%" />
+      {console.log(props.url)}
       <Button
         onClick={() => {
           alert(props.page + 1 + "번 그림을 재생성하시겠습니까?");

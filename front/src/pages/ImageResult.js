@@ -1,36 +1,33 @@
 import SelectImg from "./SelectImg";
 import { useState, useEffect } from "react";
-import Loading from "../components/Loading";
 import { Button } from "react-bootstrap";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import axios from "axios";
 // import localData from "./imageResult.json"; // for test
 import localData from "./localData.json"; // for test
+import { useLocation } from "react-router-dom";
 
 function ImageResult() {
   const [res, setRes] = useState([]);
-  const [loading, setLoading] = useState(null);
   const [page, setPage] = useState(0);
-
-  const getData = () => {
-    // await axios.get(`./ImageResult.json`).then((res) => setRes(res));
-    console.log(localData);
-    setRes(localData);
-  };
-
+  const {state} = useLocation();
+  // state: text, url
   useEffect(() => {
-    setLoading(true);
-    getData();
-    console.log("useEffect", res);
+    try{
+      console.log(state);
+      const getData = async () => {
+        await axios.get(state.url).then((response) => setRes(response.data));
+        console.log(res);
+      };
+      getData();
+    } catch (error){
+      console.log(error);
+    }
   }, []);
 
   return (
     <div>
-      {!loading ? (
-        <Loading />
-      ) : (
-        <>
-          <SelectImg data={res[page]} page={page} />
+          <SelectImg text={state.text} url={state.url} page={page} />
           <Button
             onClick={() => {
               if (page > 0) setPage(page - 1);
@@ -46,8 +43,6 @@ function ImageResult() {
             <BiRightArrow />
           </Button>
           <div>{page + 1 + " / " + res.length}</div>
-        </>
-      )}
     </div>
   );
 }
