@@ -23,31 +23,42 @@ function OffcanvasNav() {
     <div>
       <style type="text/css">
         {`
+        .navbar{
+          font-family: "LINESeedKR-Bd";
+  color: #ababd9;
+        }
     .navbar-top {
       background-color: #ababd9;
     }
     .navbar-brand{
       color:white;
       font-weight:bold;
+      margin:0px;
+      letter-spacing:2px;
     }
     .btn {
       background-color: #ababd9;
       color: white;
       border-color: rgba( 255, 255, 255, 0 );
       margin:10px;
+      font-family: "LINESeedKR-Bd";
     }
     .backBtn{
+      background-color: #ababd9;
       text-align:left;
-      padding-left:0px;
       margin:0px;
     }
     .settingToggle{
-      padding-right:0px;
       border-color: rgba( 255, 255, 255, 0 );
     }
     .title{
       color: white;
       font-weight: bold;
+    }
+    .offcanvas-title{
+      font-family: "LINESeedKR-Bd"; 
+      color: #ababd9;
+      text-align: center;
     }
     `}
       </style>
@@ -63,7 +74,9 @@ function OffcanvasNav() {
             >
               <TbArrowBackUp size="24" />
             </Button>
-            <Navbar.Brand href="/">TMI</Navbar.Brand>
+            <Navbar.Brand className="navbar-brand" href="/">
+              TMI
+            </Navbar.Brand>
             <Navbar.Toggle
               className="settingToggle"
               aria-controls={`offcanvasNavbar-expand-${expand}`}
@@ -94,14 +107,14 @@ function OffcanvasNav() {
                     <AiOutlineHome size="28" />
                   </Link> */}
                   <Button
-                      className="toggleBtn"
-                        onClick={() => {
-                          navigate("/");
-                          toggleMenu();
-                        }}
-                      >
-                       <AiOutlineHome size="20" /> 홈 <AiOutlineHome size="20" />
-                      </Button>
+                    className="toggleBtn"
+                    onClick={() => {
+                      navigate("/");
+                      toggleMenu();
+                    }}
+                  >
+                    <AiOutlineHome size="20" /> 홈 <AiOutlineHome size="20" />
+                  </Button>
 
                   {isLogin() ? (
                     <>
@@ -118,7 +131,7 @@ function OffcanvasNav() {
                         Withdrawal
                       </Link> */}
                       <Button
-                      className="toggleBtn"
+                        className="toggleBtn"
                         onClick={() => {
                           navigate("/membersetting");
                           toggleMenu();
@@ -127,7 +140,7 @@ function OffcanvasNav() {
                         회원 설정
                       </Button>
                       <Button
-                      className="toggleBtn"
+                        className="toggleBtn"
                         onClick={() => {
                           deleteToken();
                           navigate("/");
@@ -139,12 +152,24 @@ function OffcanvasNav() {
                     </>
                   ) : (
                     <>
-                      <Link to="/login" onClick={toggleMenu}>
-                        Login
-                      </Link>
-                      <Link to="/join" onClick={toggleMenu}>
-                        Join
-                      </Link>
+                      <Button
+                        className="toggleBtn"
+                        onClick={() => {
+                          navigate("/login");
+                          toggleMenu();
+                        }}
+                      >
+                        로그인
+                      </Button>
+                      <Button
+                        className="toggleBtn"
+                        onClick={() => {
+                          navigate("/join");
+                          toggleMenu();
+                        }}
+                      >
+                        회원가입
+                      </Button>
                     </>
                   )}
 
