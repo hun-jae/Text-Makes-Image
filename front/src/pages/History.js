@@ -7,9 +7,11 @@ function History() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/data/test.json")
+      .post("http://localhost:3000/data/test.json", {
+        uid : localStorage.getItem("uid")
+      })
       .then((result) => {
-        setData(result.data);
+        setData(result.data); // 썸네일 사진들 url
         console.log(data);
       })
       .catch(() => {
