@@ -43,20 +43,20 @@ function BottomNav() {
       >
         <Nav.Item className="col-md-4">
           <Nav.Link className="nav-link" eventKey="home" href="/">
-            <AiOutlineHome className="linkIcon"/>
+            <AiOutlineHome className="linkIcon" />
             <div className="linkName">Home</div>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item className="col-md-4">
           <Nav.Link className="nav-link" eventKey="write">
-            <AiOutlinePlusCircle className="linkIcon"/>
+            <AiOutlinePlusCircle className="linkIcon" />
             <div className="linkName">Write</div>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item className="col-md-4">
-          <Nav.Link className="nav-link" eventKey="profile">
-            <CgProfile className="linkIcon"/>
-            <div className="linkName">Profile</div>
+          <Nav.Link className="nav-link" eventKey="history">
+            <CgProfile className="linkIcon" />
+            <div className="linkName">History</div>
           </Nav.Link>
         </Nav.Item>
       </Nav>

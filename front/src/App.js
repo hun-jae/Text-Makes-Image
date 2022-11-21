@@ -9,7 +9,7 @@ import Write from "./pages/Write";
 import Withdrawal from "./pages/Withdrawal";
 import FindID from "./pages/FindID";
 import FindPW from "./pages/FindPW";
-import Profile from "./pages/Profile";
+import History from "./pages/History";
 import ImageResult from "./pages/ImageResult";
 import Home from "./pages/Home";
 import BottomNav from "./components/BottomNav";
@@ -21,7 +21,7 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/history" element={<History />} />
           <Route path="/login" element={<Login />} />
           <Route path="/membersetting" element={<MemberSetting />} />
           <Route path="/join" element={<Join />} />

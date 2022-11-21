@@ -1,9 +1,8 @@
-import { Button } from "react-bootstrap";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 
-function Profile() {
+function History() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -19,8 +18,10 @@ function Profile() {
   }, []);
 
   return (
-    <div> 
-      <div>{localStorage.getItem("uid")}</div>
+    <div>
+      <div className="historyHeader">
+        {localStorage.getItem("uid") + "님의 History"}
+      </div>
       {data.map((idx, i) => {
         return <Img i={i} />;
       })}
@@ -38,4 +39,4 @@ function Img(props) {
   );
 }
 
-export default Profile;
+export default History;
