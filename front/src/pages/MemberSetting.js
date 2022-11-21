@@ -2,8 +2,8 @@ import { Form, Row, Col, Button, Container } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
 function MemberSetting({ user }) {
-  const {register, handleSubmit} = useForm();
-  const { uid, nickname, password} = user || {};
+  const { register, handleSubmit } = useForm();
+  const { uid, nickname, password } = user || {};
   return (
     <Container>
       <Form>
@@ -13,7 +13,11 @@ function MemberSetting({ user }) {
             ID
           </Form.Label>
           <Col>
-            <Form.Control type="text" placeholder="ID" disabled>{uid}</Form.Control>
+            <Form.Control
+              type="text"
+              placeholder={localStorage.getItem("uid")}
+              disabled
+            ></Form.Control>
           </Col>
         </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="MSFormNickname">

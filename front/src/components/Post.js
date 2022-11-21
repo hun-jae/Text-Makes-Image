@@ -1,6 +1,9 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 function Post() {
+  const {state} = useLocation();
+
   return (
     <div>
       <style type="text/css">
@@ -14,8 +17,8 @@ function Post() {
     `}
       </style>
       <div>
-        <img className="contentImg" src="/test_img/1.jpg" />
-        <div className="postContent"></div>
+        <img className="contentImg" src={state.url} />
+        <div className="postContent">{state.content}</div>
       </div>
     </div>
   );

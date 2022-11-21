@@ -10,39 +10,39 @@ import { useLocation } from "react-router-dom";
 function ImageResult() {
   const [res, setRes] = useState([]);
   const [page, setPage] = useState(0);
-  const {state} = useLocation();
+  const { state } = useLocation();
   // state: text, url
   useEffect(() => {
-    try{
+    try {
       console.log(state);
       const getData = async () => {
         await axios.get(state.url).then((response) => setRes(response.data));
         console.log(res);
       };
       getData();
-    } catch (error){
+    } catch (error) {
       console.log(error);
     }
   }, []);
 
   return (
     <div>
-          <SelectImg text={state.text} url={state.url} page={page} />
-          <Button
-            onClick={() => {
-              if (page > 0) setPage(page - 1);
-            }}
-          >
-            <BiLeftArrow />
-          </Button>
-          <Button
-            onClick={() => {
-              if (page < res.length - 1) setPage(page + 1);
-            }}
-          >
-            <BiRightArrow />
-          </Button>
-          <div>{page + 1 + " / " + res.length}</div>
+      <SelectImg text={state[page].text} url={state[page].url} page={page} />
+      <Button
+        onClick={() => {
+          if (page > 0) setPage(page - 1);
+        }}
+      >
+        <BiLeftArrow />
+      </Button>
+      <Button
+        onClick={() => {
+          if (page < state.length - 1) setPage(page + 1);
+        }}
+      >
+        <BiRightArrow />
+      </Button>
+      <div>{page + 1 + " / " + state.length}</div>
     </div>
   );
 }
