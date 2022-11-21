@@ -16,6 +16,9 @@ function Home() {
       color: white;
       border-color: rgba( 255, 255, 255, 0 );
     }
+    .homeUnloggedInBtn{
+      width:80%;
+    }
     .homeUid{
       font-weight:bold;
       color: #ababd9;
@@ -26,6 +29,7 @@ function Home() {
         // Not logged in
         <>
           <Button
+            className="homeUnloggedInBtn"
             onClick={() => {
               navigate("/login");
             }}
@@ -33,6 +37,7 @@ function Home() {
             Login
           </Button>
           <Button
+            className="homeUnloggedInBtn"
             onClick={() => {
               navigate("/join");
             }}
@@ -43,8 +48,7 @@ function Home() {
       ) : (
         // Logged in
         <Container>
-          <div className="homeUid">{localStorage.getItem("uid")}</div>
-          <Post/>
+          <div className="homeUid">{localStorage.getItem("uid")+"님 환영합니다!"}</div>
           {/* <Button onClick={() => navigate("/feed")}>Feed</Button>
           <Button onClick={() => navigate("/write")}>글쓰기</Button> */}
         </Container>
