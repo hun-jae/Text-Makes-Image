@@ -5,11 +5,11 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { Link, useNavigate } from "react-router-dom";
-import { isLogin, deleteToken } from "../components/auth";
+import { isLogin, deleteToken } from "./auth";
 import { TbArrowBackUp } from "react-icons/tb";
-import { AiOutlineHome } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineSetting } from "react-icons/ai";
 
-function Nav_() {
+function OffcanvasNav() {
   let navigate = useNavigate();
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -26,10 +26,28 @@ function Nav_() {
     .navbar-top {
       background-color: #ababd9;
     }
+    .navbar-brand{
+      color:white;
+      font-weight:bold;
+    }
     .btn {
       background-color: #ababd9;
       color: white;
-      border-color: white;
+      border-color: rgba( 255, 255, 255, 0 );
+      margin:10px;
+    }
+    .backBtn{
+      text-align:left;
+      padding-left:0px;
+      margin:0px;
+    }
+    .settingToggle{
+      padding-right:0px;
+      border-color: rgba( 255, 255, 255, 0 );
+    }
+    .title{
+      color: white;
+      font-weight: bold;
     }
     `}
       </style>
@@ -38,7 +56,7 @@ function Nav_() {
         <Navbar key={expand} variant="top" expand={expand} className="mb-3">
           <Container fluid>
             <Button
-              variant="outline-light"
+              className="backBtn"
               onClick={() => {
                 navigate(-1);
               }}
@@ -47,9 +65,12 @@ function Nav_() {
             </Button>
             <Navbar.Brand href="/">TMI</Navbar.Brand>
             <Navbar.Toggle
+              className="settingToggle"
               aria-controls={`offcanvasNavbar-expand-${expand}`}
               onClick={toggleMenu}
-            />
+            >
+              <AiOutlineSetting size="24" color="white" />
+            </Navbar.Toggle>
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
@@ -60,19 +81,31 @@ function Nav_() {
               onHide={handleClose}
             >
               <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                <Offcanvas.Title
+                  className="headerTitle"
+                  id={`offcanvasNavbarLabel-expand-${expand}`}
+                >
                   TMI
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Link to="/" onClick={toggleMenu}>
+                  {/* <Link to="/" onClick={toggleMenu}>
                     <AiOutlineHome size="28" />
-                  </Link>
+                  </Link> */}
+                  <Button
+                      className="toggleBtn"
+                        onClick={() => {
+                          navigate("/");
+                          toggleMenu();
+                        }}
+                      >
+                       <AiOutlineHome size="20" /> 홈 <AiOutlineHome size="20" />
+                      </Button>
 
                   {isLogin() ? (
                     <>
-                      <Link to="/feed" onClick={toggleMenu}>
+                      {/* <Link to="/profile" onClick={toggleMenu}>
                         Feed
                       </Link>
                       <Link to="/membersetting" onClick={toggleMenu}>
@@ -83,8 +116,18 @@ function Nav_() {
                       </Link>
                       <Link to="/withdrawal" onClick={toggleMenu}>
                         Withdrawal
-                      </Link>
+                      </Link> */}
                       <Button
+                      className="toggleBtn"
+                        onClick={() => {
+                          navigate("/membersetting");
+                          toggleMenu();
+                        }}
+                      >
+                        회원 설정
+                      </Button>
+                      <Button
+                      className="toggleBtn"
                         onClick={() => {
                           deleteToken();
                           navigate("/");
@@ -137,4 +180,4 @@ function Nav_() {
   );
 }
 
-export default Nav_;
+export default OffcanvasNav;
