@@ -3,8 +3,8 @@ import { Button } from "react-bootstrap";
 function SelectImg(props) {
   return (
     <div>
-      <h3>{props.text}</h3>
       <Img url={props.url} page={props.page} />
+      <h3 style={{margin:"10px"}}>{props.text}</h3>
     </div>
   );
 }
@@ -33,13 +33,13 @@ function Img(props) {
     <div>
       <img src={props.url} width="100%" />
       {console.log(props.url)}
-      <Button
+      {/* <Button
         onClick={() => {
           alert(props.page + 1 + "번 그림을 재생성하시겠습니까?");
         }}
       >
         재생성
-      </Button>
+      </Button> */}
     </div>
   );
 }
