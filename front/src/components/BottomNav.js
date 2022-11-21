@@ -42,7 +42,7 @@ function BottomNav() {
         }}
       >
         <Nav.Item className="col-md-4">
-          <Nav.Link className="nav-link" eventKey="home" href="/">
+          <Nav.Link className="nav-link" eventKey="home">
             <AiOutlineHome className="linkIcon" />
             <div className="linkName">Home</div>
           </Nav.Link>
