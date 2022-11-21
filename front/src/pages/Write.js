@@ -9,7 +9,7 @@ function Write() {
   const [loading, setLoading] = useState(null);
 
   const { register, handleSubmit } = useForm();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     // console.log(data.content);
@@ -20,14 +20,13 @@ function Write() {
     console.log(data);
     setLoading(true);
     axios
-      .post("http://5b78-34-132-185-151.ngrok.io/image", data)
+      .post("http://5e80-35-204-124-186.ngrok.io/image", data)
       .then((response) => {
         console.log(response.status);
         if (response.status === 200) {
           alert("Submit Success");
-          console.log(response);
           setLoading(false);
-          navigate("/imageResult", {state:response.data});
+          navigate("/imageResult", { state: response.data });
         } else {
           alert("Submit failed!!");
         }
@@ -42,22 +41,37 @@ function Write() {
   };
 
   return (
-    <Container>
-      {loading?<Loading/>:<Form onSubmit={handleSubmit(onSubmit, onError)}>
-        <Form.Group controlId="WriteFormText">
-          <Form.Label>글쓰기</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={25}
-            {...register("content", { required: true })}
-          ></Form.Control>
-        </Form.Group>
-        <Button variant="outline-secondary" type="submit">
-          확인
-        </Button>
-      </Form>}
-      
-    </Container>
+    <>
+      <style type="text/css">
+        {`
+       .formContent{
+        width:100%;
+        rows:"20";
+        resize:none;
+       }
+    `}
+      </style>
+      <Container>
+        {loading ? (
+          <Loading />
+        ) : (
+          <Form onSubmit={handleSubmit(onSubmit, onError)}>
+            <Form.Group controlId="WriteFormText">
+              <Form.Label>글쓰기</Form.Label>
+              <Form.Control
+                className="formContent"
+                rows={20}
+                as="textarea"
+                {...register("content", { required: true })}
+              ></Form.Control>
+            </Form.Group>
+            <Button variant="outline-secondary" type="submit">
+              확인
+            </Button>
+          </Form>
+        )}
+      </Container>
+    </>
   );
 }
 
