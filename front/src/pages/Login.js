@@ -36,6 +36,8 @@ function Login() {
           console.log("User", localStorage.getItem("uid"), "has logged in.");
 
           navigate("/home");
+        } else {
+          alert("로그인 실패! 아이디와 비밀번호를 확인하세요.");
         }
       })
       .catch((error) => {
