@@ -49,7 +49,6 @@ function Write() {
         {`
        .formContent{
         width:100%;
-        rows:"20";
         resize:none;
        }
     `}
@@ -63,7 +62,7 @@ function Write() {
               <Form.Label>글쓰기</Form.Label>
               <Form.Control
                 className="formContent"
-                rows={20}
+                rows={10}
                 as="textarea"
                 {...register("text", { required: true })}
               ></Form.Control>

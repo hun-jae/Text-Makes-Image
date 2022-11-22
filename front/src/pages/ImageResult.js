@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import axios from "axios";
-// import localData from "./imageResult.json"; // for test
-import localData from "./localData.json"; // for test
 import { useLocation } from "react-router-dom";
 
 function ImageResult() {
@@ -37,12 +35,12 @@ function ImageResult() {
       </Button>
       <Button
         onClick={() => {
-          if (page < state.length - 1) setPage(page + 1);
+          if (page < state.length - 2) setPage(page + 1);
         }}
       >
         <BiRightArrow />
       </Button>
-      <div>{page + 1 + " / " + state.length}</div>
+      <div>{page + 1 + " / " + (state.length - 1)}</div>
     </div>
   );
 }
