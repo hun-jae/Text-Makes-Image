@@ -1,9 +1,9 @@
 import { Form, Button, Container } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import { useState } from "react";
+import api from "../components/api";
 
 function Write() {
   const [loading, setLoading] = useState(null);
@@ -17,14 +17,17 @@ function Write() {
     // navigate("/imageResult");
 
     console.log("Submit Clicked!");
-    console.log(data);
+    console.log(data.text);
     setLoading(true);
-    axios
-      .post("http://5e80-35-204-124-186.ngrok.io/image", data)
+    api
+      .post("/image", {
+        uid: localStorage.getItem("uid"),
+        text: data.text,
+      })
       .then((response) => {
         console.log(response.status);
         if (response.status === 200) {
-          alert("Submit Success");
+          console.log("Submit Success");
           setLoading(false);
           navigate("/imageResult", { state: response.data });
         } else {
@@ -62,7 +65,7 @@ function Write() {
                 className="formContent"
                 rows={20}
                 as="textarea"
-                {...register("content", { required: true })}
+                {...register("text", { required: true })}
               ></Form.Control>
             </Form.Group>
             <Button variant="outline-secondary" type="submit">

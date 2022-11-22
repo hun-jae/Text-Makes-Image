@@ -2,6 +2,7 @@ import Nav from "react-bootstrap/Nav";
 import { AiOutlineHome, AiOutlinePlusCircle } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
+import { isLogin } from "./auth";
 
 function BottomNav() {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ function BottomNav() {
     }
     `}
       </style>
+      {isLogin() ? 
       <Nav
         className="bottomWrapper"
         activeKey="/"
@@ -60,6 +62,8 @@ function BottomNav() {
           </Nav.Link>
         </Nav.Item>
       </Nav>
+      :null}
+      
     </div>
   );
 }

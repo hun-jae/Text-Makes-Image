@@ -1,20 +1,42 @@
+import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import api from "../components/api";
 import { isLogin } from "../components/auth";
 import Post from "../components/Post";
 
 function Home() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    if (isLogin()) {
+      api
+        .post("/mainPage")
+        .then((result) => {
+          if (result.data === "No Param") {
+            setData([]);
+          } else {
+            setData(result.data); // text, url
+          }
+          console.log(data);
+        })
+        .catch(() => {
+          console.log("failed to load data");
+        });
+
+      // for test
+      // setData(testData);
+    }
+  }, []);
 
   return (
     <div>
       <style type="text/css">
         {`
-    .btn {
-      background-color: #ababd9;
-      color: white;
-      border-color: rgba( 255, 255, 255, 0 );
+    .btnGroup{
+      vertical-align:center;
     }
     .homeUnloggedInBtn{
       width:80%;
@@ -27,7 +49,7 @@ function Home() {
       </style>
       {!isLogin() ? (
         // Not logged in
-        <>
+        <div className="btnGroup">
           <Button
             className="homeUnloggedInBtn"
             onClick={() => {
@@ -44,11 +66,13 @@ function Home() {
           >
             Join
           </Button>
-        </>
+        </div>
       ) : (
         // Logged in
         <Container>
-          <div className="homeUid">{localStorage.getItem("uid")+"님 환영합니다!"}</div>
+          <div className="homeUid">
+            {localStorage.getItem("uid") + "님 환영합니다!"}
+          </div>
           {/* <Button onClick={() => navigate("/feed")}>Feed</Button>
           <Button onClick={() => navigate("/write")}>글쓰기</Button> */}
         </Container>

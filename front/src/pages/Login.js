@@ -2,7 +2,8 @@ import axios from "axios";
 import { Row, Col, Container, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import api from "../components/api";
 
 function Login() {
   const {
@@ -10,31 +11,36 @@ function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: "onBlur" });
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     // 임시테스트용
-    localStorage.setItem("uid", data.uid);
-    localStorage.setItem("password", data.password);
-    localStorage.setItem("accessToken", "defined");
+    // localStorage.setItem("uid", data.uid);
+    // localStorage.setItem("password", data.password);
+    // localStorage.setItem("accessToken", "defined");
+    // console.log("User", localStorage.getItem("uid"), "has logged in.");
 
-    console.log("User", localStorage.getItem("uid"), "has logged in.");
+    // window.location.href = "/";
+    // console.log("로그인 시도. ID : ", data.uid, "PW : ", data.password);
+    api
+      .post("/login", {
+        uid: data.uid,
+        password: data.password,
+      })
+      .then((response) => {
+        if (response.data === "success") {
+          localStorage.setItem("uid", data.uid);
+          localStorage.setItem("password", data.password);
+          localStorage.setItem("accessToken", "defined");
 
-    window.location.href = "/";
+          console.log("User", localStorage.getItem("uid"), "has logged in.");
 
-    // axios
-    //   .post("/login", data)
-    //   .then((response) => {
-    //     const { accesstoken } = response.data;
-
-    //     // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
-    //     axios.defaults.headers.common[
-    //       "Authorization"
-    //     ] = `Bearer ${accesstoken}`;
-    //     // accessToken을 localStorage, cookie 등에 저장하지 않는다!
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+          navigate("/home");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const onError = (errors) => {
