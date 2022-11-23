@@ -11,7 +11,7 @@ function Write() {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     // console.log(data.content);
     // alert(data.content)
     // navigate("/imageResult");
@@ -19,7 +19,7 @@ function Write() {
     console.log("Submit Clicked!");
     console.log(data.text);
     setLoading(true);
-    api
+    await api
       .post("/image", {
         uid: localStorage.getItem("uid"),
         text: data.text,
