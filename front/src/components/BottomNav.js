@@ -12,10 +12,9 @@ function BottomNav() {
       <style type="text/css">
         {`
     .bottomWrapper {
-      position:fixed;
+      position: fixed;
       bottom:0;
-      left:0;
-      right:0;
+
       width:100%;
       height:55px;
       background-color: #ababd9;
@@ -35,35 +34,34 @@ function BottomNav() {
     }
     `}
       </style>
-      {isLogin() ? 
-      <Nav
-        className="bottomWrapper"
-        activeKey="/"
-        onSelect={(selectedKey) => {
-          navigate(`/${selectedKey}`);
-        }}
-      >
-        <Nav.Item className="col-md-4">
-          <Nav.Link className="nav-link" eventKey="home">
-            <AiOutlineHome className="linkIcon" />
-            <div className="linkName">Home</div>
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item className="col-md-4">
-          <Nav.Link className="nav-link" eventKey="write">
-            <AiOutlinePlusCircle className="linkIcon" />
-            <div className="linkName">Write</div>
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item className="col-md-4">
-          <Nav.Link className="nav-link" eventKey="history">
-            <CgProfile className="linkIcon" />
-            <div className="linkName">History</div>
-          </Nav.Link>
-        </Nav.Item>
-      </Nav>
-      :null}
-      
+      {isLogin() ? (
+        <Nav
+          className="bottomWrapper"
+          activeKey="/"
+          onSelect={(selectedKey) => {
+            navigate(`/${selectedKey}`);
+          }}
+        >
+          <Nav.Item className="col-md-4">
+            <Nav.Link className="nav-link" eventKey="mainPage">
+              <AiOutlineHome className="linkIcon" />
+              <div className="linkName">Home</div>
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item className="col-md-4">
+            <Nav.Link className="nav-link" eventKey="write">
+              <AiOutlinePlusCircle className="linkIcon" />
+              <div className="linkName">Write</div>
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item className="col-md-4">
+            <Nav.Link className="nav-link" eventKey="history">
+              <CgProfile className="linkIcon" />
+              <div className="linkName">History</div>
+            </Nav.Link>
+          </Nav.Item>
+        </Nav>
+      ) : null}
     </div>
   );
 }

@@ -74,7 +74,7 @@ function OffcanvasNav() {
             >
               <TbArrowBackUp size="24" />
             </Button>
-            <Navbar.Brand className="navbar-brand" href="/home">
+            <Navbar.Brand className="navbar-brand" href="/">
               TMI
             </Navbar.Brand>
             <Navbar.Toggle

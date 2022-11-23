@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import ControlledCarousel from "../components/ControlledCarousel";
 
 function ImageResult() {
   const [res, setRes] = useState([]);
@@ -25,7 +26,7 @@ function ImageResult() {
 
   return (
     <div>
-      <SelectImg text={state[page].text} url={state[page].url} page={page} />
+      {/* <SelectImg text={state[page].text} url={state[page].url} page={page} />
       <Button
         onClick={() => {
           if (page > 0) setPage(page - 1);
@@ -40,7 +41,8 @@ function ImageResult() {
       >
         <BiRightArrow />
       </Button>
-      <div>{page + 1 + " / " + (state.length - 1)}</div>
+      <div>{page + 1 + " / " + (state.length - 1)}</div> */}
+      <ControlledCarousel data={state}/>
     </div>
   );
 }
