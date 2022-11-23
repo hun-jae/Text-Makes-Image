@@ -13,14 +13,34 @@ import History from "./pages/History";
 import ImageResult from "./pages/ImageResult";
 import Home from "./pages/Home";
 import BottomNav from "./components/BottomNav";
+import { isLogin } from "./components/auth";
+import MainPage from "./pages/MainPage";
 
 function App() {
   return (
     <div className="App">
+      {/* <style type="text/css">
+        {`
+        html, body{
+          height:100%;
+        }
+    #footer {
+      position : relative;
+      transform : translateY(-100%);
+    }
+    #bodyContent{
+      height: auto;
+      min-height: 100%;
+      position: relative;
+      padding-bottom: 55px;
+    }
+    `}
+      </style> */}
       <OffcanvasNav />
-      <div>
+      <div id="bodyContent">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={isLogin() ? <MainPage /> : <Home />} />
+          <Route path="/mainPage" element={<MainPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/history" element={<History />} />
           <Route path="/login" element={<Login />} />
@@ -33,7 +53,7 @@ function App() {
           <Route path="/imageResult" element={<ImageResult />} />
         </Routes>
       </div>
-      <BottomNav />
+      <BottomNav id="footer" />
     </div>
   );
 }
