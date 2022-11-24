@@ -14,7 +14,7 @@ function History() {
       })
       .then((result) => {
         if(result.data === "No Param"){
-          setData([])
+          setData([]);
         }
         else{
           setData(result.data); // 썸네일 사진들 url
@@ -34,7 +34,7 @@ function History() {
       <style>{`
       .historyImg{
         width:33%;
-        padding:10px;
+        padding:3px;
       }
       `}
       </style>
@@ -45,7 +45,15 @@ function History() {
         return <img
         className="col-md-4 historyImg"
         src={i.url}
-        onClick={()=>{navigate("/posts", {state:i})}}
+        onClick={async ()=>{
+          await api.post("/posts", {
+            pid: i.pid
+          }).then((result)=>{
+            navigate("/posts", {state:result.data})}
+          ).catch(()=>{
+            console.log("failed to load post.")
+          })
+          }}
       />
       })}
     </div>

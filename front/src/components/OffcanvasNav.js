@@ -143,7 +143,7 @@ function OffcanvasNav() {
                         className="toggleBtn"
                         onClick={() => {
                           deleteToken();
-                          navigate("/");
+                          navigate("/home");
                           toggleMenu();
                         }}
                       >
