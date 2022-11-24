@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../components/api";
-import testData from "./test.json"  // for test
 
 function History() {
   const navigate = useNavigate();
@@ -32,17 +31,21 @@ function History() {
 
   return (
     <div>
+      <style>{`
+      .historyImg{
+        width:33%;
+        padding:10px;
+      }
+      `}
+      </style>
       <div className="historyHeader">
         {localStorage.getItem("uid") + "님의 History"}
       </div>
-      {data.map((idx, i) => {
+      {data.map((i, idx) => {
         return <img
-        className="col-md-4"
-        src={"test_img/" + (i + 1) + ".jpg"}
-        width="33%"
-        onClick={navigate("/posts",{
-          pid : data.pid
-        })}
+        className="col-md-4 historyImg"
+        src={i.url}
+        onClick={()=>{navigate("/posts", {state:i})}}
       />
       })}
     </div>

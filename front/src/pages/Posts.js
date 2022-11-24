@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import api from "./api";
 
-function Post() {
+function Posts() {
   const {state} = useLocation();
 
   return (
@@ -19,10 +18,10 @@ function Post() {
       </style>
       <div>
         <img className="contentImg" src={state.url} />
-        <div className="postContent">{state.text}</div>
+        <div className="sContent">{state.text}</div>
       </div>
     </div>
   );
 }
 
-export default Post;
+export default Posts;
