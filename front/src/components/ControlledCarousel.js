@@ -27,6 +27,17 @@ function ControlledCarousel(props) {
   },[]);
 
   return (
+    <div><style type="text/css">{`
+    .carouselText{
+      background-color: #ababd9;
+      opacity : 90%;
+      border-radius: 10px;
+      padding: 5px;
+      text-align: center;
+      line-heught:center;
+  `}
+
+  </style>
     <Carousel activeIndex={index} onSelect={handleSelect} interval="50000">
       {
       props.data.map((i, idx) => {
@@ -34,12 +45,13 @@ function ControlledCarousel(props) {
           <Carousel.Item>
             <img className="d-block w-100" src={i.url} alt={idx} />
             <Carousel.Caption>
-              <h3>{i.text}</h3>
+              <h3 className="carouselText">{i.text}</h3>
             </Carousel.Caption>
           </Carousel.Item>
         );
       })}
     </Carousel>
+    </div>
   );
 }
 
