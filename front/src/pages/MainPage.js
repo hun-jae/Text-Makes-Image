@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../components/api";
-import Post from "../components/Post";
 import { Button } from "react-bootstrap";
 
 import localData from "./localData.json";

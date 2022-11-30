@@ -1,7 +1,11 @@
 import React from "react";
+import { useEffect } from "react";
 import { FadeLoader } from "react-spinners";
 
 function Loading() {
+  useEffect(()=>{
+    console.log("Loading...");
+  })
   return (
     <div
       style={{

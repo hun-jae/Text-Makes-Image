@@ -1,15 +1,14 @@
-import SelectImg from "./SelectImg";
 import { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
-import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import ControlledCarousel from "../components/ControlledCarousel";
+import Loading from "../components/Loading";
 
 function ImageResult() {
   const [res, setRes] = useState([]);
   const [page, setPage] = useState(0);
   const { state } = useLocation();
+
   // state: text, url
   useEffect(() => {
     try {
@@ -43,6 +42,7 @@ function ImageResult() {
       </Button>
       <div>{page + 1 + " / " + (state.length - 1)}</div> */}
       <ControlledCarousel data={state}/>
+      
     </div>
   );
 }
