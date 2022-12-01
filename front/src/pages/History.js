@@ -46,8 +46,8 @@ function History() {
       </div>
       {data.map((i, idx) => {
         return <img
-        className="col-md-4 historyImg"
-        src={i.url}
+        className="col-md-4 NO-CACHE historyImg"
+        src={i.url+"?"+Date.now()}
         onClick={async ()=>{
           await api.post("/posts", {
             pid: i.pid
