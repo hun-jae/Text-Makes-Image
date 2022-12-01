@@ -7,24 +7,27 @@ function History() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    api
-      .post("/history", {
-        uid : localStorage.getItem("uid")
-      })
-      .then((result) => {
-        if(result.data === "No Param"){
-          setData([]);
-        }
-        else{
-          setData(result.data); // 썸네일 사진들 url
-        }
-        console.log(data);
-      })
-      .catch(() => {
-        console.log("failed to load data");
-      });
+  const getHistory = async () => {
+    const history = await api
+    .post("/history", {
+      uid : localStorage.getItem("uid")
+    })
+    .then((result) => {
+      if(result.data === "No Param"){
+        setData([]);
+      }
+      else{
+        setData(result.data); // 썸네일 사진들 url
+      }
+    })
+    .catch(() => {
+      console.log("failed to load data");
+    });
+  }
 
+  useEffect(() => {
+    getHistory();
+    console.log("use effect",data);
     // for test
     // setData(testData);
   }, []);

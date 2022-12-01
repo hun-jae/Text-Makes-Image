@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import api from "./api";
-import {TfiReload} from "react-icons/tfi";
+import { TfiReload } from "react-icons/tfi";
 import { Button } from "react-bootstrap";
 import Loading from "./Loading";
 
@@ -15,31 +15,33 @@ function ControlledCarousel(props) {
   };
 
   const getPosts = async () => {
-    const posts = await api.post("/posts",{
-      pid: props.pid
-    }).then((result) => {
-      if(result.data === "No Param"){
-        setData([]);
-      }
-        else{
+    const posts = await api
+      .post("/posts", {
+        pid: props.pid,
+      })
+      .then((result) => {
+        if (result.data === "No Param") {
+          setData([]);
+        } else {
           setData(result.data);
         }
-      }).catch(() => {
-          console.log("failed to load data");
+      })
+      .catch(() => {
+        console.log("failed to load data");
       });
-  }
+  };
 
-  useEffect(async ()=>{ 
+  useEffect(() => { 
     getPosts();
     console.log(data);
-  },[]);
+  }, []);
 
-  useEffect(()=>{
-    
-  },[]);
+  useEffect(() => {}, []);
 
   return (
-    <div><style type="text/css">{`
+    <div>
+      <style type="text/css">
+        {`
     .carouselText{
       background-color: #808080;
       opacity : 90%;
@@ -54,43 +56,48 @@ function ControlledCarousel(props) {
         border-radius: 30px;
       }
   `}
+      </style>
+      {loading ? (
+        <Loading />
+      ) : (
+        <Carousel activeIndex={index} onSelect={handleSelect} interval="50000">
+          {props.data.map((i, idx) => {
+            return (
+              <Carousel.Item>
+                <img className="d-block w-100" src={i.url} alt={idx} />
+                <Carousel.Caption>
+                  <Button
+                    id="reloadBtn"
+                    onClick={async () => {
+                      setLoading(true);
 
-  </style>
-  {/* {loading?<Loading/>:} */}
-    <Carousel activeIndex={index} onSelect={handleSelect} interval="50000">
-      {
-      props.data.map((i, idx) => {
-        return (
-          <Carousel.Item>
-            <img className="d-block w-100" src={i.url} alt={idx} />
-            <Carousel.Caption>
-            <Button 
-              id="reloadBtn" 
-              onClick={async ()=>{
-
-                props.setLoading(true);
-
-                await api.post("/reimage",{
-                  uid:localStorage.getItem("uid"),
-                  text:i.text
-                }).then((response)=>{
-                  if(response.data === "remake Success"){
-                    props.setLoading(false);
-                    window.location.reload();
-                  }else{
-                    alert("이미지 재생성 실패")
-                  }
-                }).catch((error)=>{
-                  console.log(error);
-                });
-                console.log("reload onclick");
-                }}><TfiReload size={24}/></Button>
-              <h4 className="carouselText">{i.text}</h4>
-            </Carousel.Caption>
-          </Carousel.Item>
-        );
-      })}
-    </Carousel>
+                      await api
+                        .post("/reimage", {
+                          uid: localStorage.getItem("uid"),
+                          text: i.text,
+                        })
+                        .then((response) => {
+                          if (response.data === "remake Success") {
+                            setLoading(false);
+                            window.location.reload();
+                          } else {
+                            alert("이미지 재생성 실패");
+                          }
+                        })
+                        .catch((error) => {
+                          console.log(error);
+                        });
+                    }}
+                  >
+                    <TfiReload size={24} />
+                  </Button>
+                  <h4 className="carouselText">{i.text}</h4>
+                </Carousel.Caption>
+              </Carousel.Item>
+            );
+          })}
+        </Carousel>
+      )}
     </div>
   );
 }
