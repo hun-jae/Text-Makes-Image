@@ -16,6 +16,7 @@ import BottomNav from "./components/BottomNav";
 import { isLogin } from "./components/auth";
 import MainPage from "./pages/MainPage";
 import Posts from "./pages/Posts";
+import AddFriend from "./components/AddFriend";
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
           <Route path="/findPW" element={<FindPW />} />
           <Route path="/imageResult" element={<ImageResult />} />
           <Route path="/posts" element={<Posts />} />
+          <Route path="/addFriend" element={<AddFriend />} />
         </Routes>
       </div>
       <BottomNav id="footer" />

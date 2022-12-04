@@ -102,10 +102,8 @@ function OffcanvasNav() {
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
+              <div>{localStorage.getItem("uid") + "님 환영합니다."}</div>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  {/* <Link to="/" onClick={toggleMenu}>
-                    <AiOutlineHome size="28" />
-                  </Link> */}
                   <Button
                     className="toggleBtn"
                     onClick={() => {
@@ -118,18 +116,6 @@ function OffcanvasNav() {
 
                   {isLogin() ? (
                     <>
-                      {/* <Link to="/profile" onClick={toggleMenu}>
-                        Feed
-                      </Link>
-                      <Link to="/membersetting" onClick={toggleMenu}>
-                        Setting
-                      </Link>
-                      <Link to="/write" onClick={toggleMenu}>
-                        Write
-                      </Link>
-                      <Link to="/withdrawal" onClick={toggleMenu}>
-                        Withdrawal
-                      </Link> */}
                       <Button
                         className="toggleBtn"
                         onClick={() => {
@@ -138,6 +124,15 @@ function OffcanvasNav() {
                         }}
                       >
                         회원 설정
+                      </Button>
+                      <Button
+                        className="toggleBtn"
+                        onClick={() => {
+                          navigate("/addFriend");
+                          toggleMenu();
+                        }}
+                      >
+                        친구 추가
                       </Button>
                       <Button
                         className="toggleBtn"
