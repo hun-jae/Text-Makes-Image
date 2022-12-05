@@ -102,7 +102,7 @@ function OffcanvasNav() {
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
-              <div>{localStorage.getItem("uid") + "님 환영합니다."}</div>
+              {isLogin() && <div>{localStorage.getItem("uid") + "님 환영합니다."}</div>}
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <Button
                     className="toggleBtn"

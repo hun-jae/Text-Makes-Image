@@ -1,31 +1,35 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
-
-import localData from "./localData.json";
-import Carousel from "../components/UnControlledCarousel";
+import api from "../components/api";
 
 function MainPage() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    // api
-    //   .post("/mainPage")
-    //   .then((result) => {
-    //     if (result.data === "No Param") {
-    //       setData([]);
-    //     } else {
-    //       setData(result.data); // text, url
-    //     }
-    //     console.log(data);
-    //   })
-    //   .catch(() => {
-    //     console.log("failed to load data");
-    //   });
+  const getTimeline = async () => {
+    const timeline = await api
+    .post("/mainPage",{
+      uid:localStorage.getItem("uid")
+    })
+    .then((result) => {
+      if (result.data === "No Param") {
+        console.log("No data");
+        setData([]);
+      } else {
+        setData(result.data); // url, pid, uid
+      }
+    })
+    .catch(() => {
+      console.log("Failed to load data");
+    });
 
+  }
+
+  useEffect(() => {
+    getTimeline();
+    console.log(data);
     // for test
-    setData(localData);
+    // setData(localData);
   }, []);
 
   return (
@@ -35,6 +39,7 @@ function MainPage() {
             #mainPageWrapper{
                 height:auto;
                 min-height:100%;
+                bottom:55px;
             }
             .mainPageImg{
                 width:100%;
@@ -45,23 +50,28 @@ function MainPage() {
             `}
       </style>
       <div id="mainPageWrapper">
-        <div id="mainPageHeader">Text-Makes-Image</div>
-        {/* {data.map((i) => {
+   {data.map((i, idx) => {
           return (
             <div>
-              <img className="mainPageImg" src={i.url} />
-              <div>{i.text}</div>
-            </div>
-          );
-        })} */}
-        <Carousel></Carousel>
-        <Button
-          onClick={() => {
-            navigate("/write");
-          }}
-        >
-          Start Now
-        </Button>
+              <div>{i.pid}</div>
+          <img
+          className="col-md-4 NO-CACHE mainPageImg"
+          src={i.url+"?"+Date.now()}
+          onClick={async ()=>{
+            await api.post("/posts", {
+              pid: i.pid
+            }).then((result)=>{
+              navigate("/posts", {state:result.data})}
+            ).catch(()=>{
+              console.log("failed to load post.")
+            })
+            }}
+        />
+        </div>);
+        })
+}
+
+        {/* Show timeline */}
       </div>
     </div>
   );
