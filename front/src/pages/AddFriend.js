@@ -1,7 +1,7 @@
 import { Form, Row, Col, Button, Container } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import api from "./api";
+import api from "../components/api";
 
 function AddFriend() {
     const {
@@ -12,18 +12,19 @@ function AddFriend() {
 
   const onSubmit = async (data) => {
     const friend = await api
-      .post("/history", {
+      .post("/addFriend", {
         uid: localStorage.getItem("uid"),
         fid: data.fid,
       })
       .then((result) => {
+        console.log(result.data);
         //친구 추가 성공
-        if (result.data === "succcess") {
+        if (result.data === "success") {
           alert("님이 친구 추가되었습니다.");
         }
         // 이미 추가된 친구
         else if (result.data === "fail") {
-          alert("이미 추가된 친구입니다.");
+          alert("친구 추가에 실패하였습니다. 친구 아이디를 다시 확인해주세요.");
         }
         // No param
         else {
