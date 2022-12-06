@@ -26,6 +26,8 @@ function OffcanvasNav() {
         .navbar{
           font-family: "LINESeedKR-Bd";
   color: #ababd9;
+  position:fixed;
+  width:100%;
         }
     .navbar-top {
       background-color: #ababd9;

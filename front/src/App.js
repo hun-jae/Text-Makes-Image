@@ -16,29 +16,30 @@ import BottomNav from "./components/BottomNav";
 import { isLogin } from "./components/auth";
 import MainPage from "./pages/MainPage";
 import Posts from "./pages/Posts";
-import AddFriend from "./components/AddFriend";
+import AddFriend from "./pages/AddFriend";
 
 function App() {
   return (
     <div className="App">
-      {/* <style type="text/css">
-        {`
-        html, body{
-          height:100%;
-        }
-    #footer {
-      position : relative;
-      transform : translateY(-100%);
-    }
+      <style type="text/css">
+   {`
+    //     html, body{
+    //       height:100%;
+    //     }
+    // #footer {
+    //   position : relative;
+    //   transform : translateY(-100%);
+    // }
     #bodyContent{
-      height: auto;
-      min-height: 100%;
-      position: relative;
+      // height: auto;
+      // min-height: 100%;
+      // position: relative;
+      padding-top: 55px;
       padding-bottom: 55px;
     }
     `}
-      </style> */}
-      <OffcanvasNav />
+      </style>
+      <OffcanvasNav id="topNav"/>
       <div id="bodyContent">
         <Routes>
           <Route path="/" element={isLogin() ? <MainPage /> : <Home />} />
