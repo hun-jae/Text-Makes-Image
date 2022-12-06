@@ -20,7 +20,7 @@ function Posts() {
       <div>
         {/* <img className="contentImg" src={state.url} />
         <div className="sContent">{state.pid}</div> */}
-        <ControlledCarousel data={state}/>
+        <ControlledCarousel data={state.data} uid={state.uid}/>
       </div>
     </div>
   );

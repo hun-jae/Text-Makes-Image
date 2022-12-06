@@ -17,6 +17,7 @@ function MainPage() {
         setData([]);
       } else {
         setData(result.data); // url, pid, uid
+        // console.log("Result.data::", result.data);
       }
     })
     .catch(() => {
@@ -27,7 +28,6 @@ function MainPage() {
 
   useEffect(() => {
     getTimeline();
-    console.log(data);
     // for test
     // setData(localData);
   }, []);
@@ -39,9 +39,11 @@ function MainPage() {
             #mainPageWrapper{
                 height:auto;
                 min-height:100%;
-                bottom:55px;
             }
-            .mainPageImg{
+            .postHeader{
+              margin:10px;
+            }
+            .postImg{
                 width:100%;
             }
             #mainPageHeader{
@@ -50,18 +52,23 @@ function MainPage() {
             `}
       </style>
       <div id="mainPageWrapper">
-   {data.map((i, idx) => {
+        {data.length == 0
+        ?navigate("/home")
+        :data.map((i, idx) => {
           return (
             <div>
-              <div>{i.pid}</div>
+              <h2 className="postHeader">{i.uid + "님의 게시물"}</h2>
           <img
-          className="col-md-4 NO-CACHE mainPageImg"
+          className="col-md-4 NO-CACHE postImg"
           src={i.url+"?"+Date.now()}
           onClick={async ()=>{
             await api.post("/posts", {
               pid: i.pid
             }).then((result)=>{
-              navigate("/posts", {state:result.data})}
+              navigate("/posts", {state:{
+                data : result.data,
+                uid : i.uid
+              }})}
             ).catch(()=>{
               console.log("failed to load post.")
             })
@@ -70,6 +77,7 @@ function MainPage() {
         </div>);
         })
 }
+   
 
         {/* Show timeline */}
       </div>
