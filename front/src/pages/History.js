@@ -27,7 +27,6 @@ function History() {
 
   useEffect(() => {
     getHistory();
-    console.log("use effect",data);
     // for test
     // setData(testData);
   }, []);
@@ -52,7 +51,10 @@ function History() {
           await api.post("/posts", {
             pid: i.pid
           }).then((result)=>{
-            navigate("/posts", {state:result.data})}
+            navigate("/posts", {state:{
+              data:result.data,
+              uid:localStorage.getItem("uid")
+            }})}
           ).catch(()=>{
             console.log("failed to load post.")
           })
