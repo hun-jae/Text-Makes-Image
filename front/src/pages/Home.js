@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Carousel from "../components/UnControlledCarousel";
+import { isLogin } from "../components/auth";
 
 function Home() {
   const navigate = useNavigate();
@@ -27,7 +28,16 @@ function Home() {
       <div>
         <div id="mainPageHeader">Text-Makes-Image</div>
         <Carousel></Carousel>
-      <div className="btnGroup">
+        {isLogin()
+        ?<Button
+        className="homeUnloggedInBtn"
+        onClick={() => {
+          navigate("/write");
+        }}
+      >
+        Write
+      </Button>
+        :<div className="btnGroup">
         <Button
           className="homeUnloggedInBtn"
           onClick={() => {
@@ -44,7 +54,8 @@ function Home() {
         >
           Join
         </Button>
-      </div>
+      </div>}
+      
     </div>
     </div>
   );
