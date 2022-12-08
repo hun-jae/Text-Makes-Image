@@ -20,7 +20,7 @@ function AddFriend() {
         console.log(result.data);
         //친구 추가 성공
         if (result.data === "success") {
-          alert("님이 친구 추가되었습니다.");
+          alert("${fid}님이 친구 추가되었습니다.");
         }
         // 이미 추가된 친구
         else if (result.data === "no_user") {
