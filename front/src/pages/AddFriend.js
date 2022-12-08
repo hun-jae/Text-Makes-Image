@@ -31,7 +31,7 @@ function AddFriend() {
           alert("이미 친구인 사용자입니다.");
         }
         else if (result.data === "me") {
-          alert("본인은 사용자로 추가할 수 없습니다.");
+          alert("본인은 친구로 추가할 수 없습니다.");
         }
         else {
           alert("친구추가에 실패했습니다.");
