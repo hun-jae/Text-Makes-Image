@@ -23,12 +23,18 @@ function AddFriend() {
           alert("님이 친구 추가되었습니다.");
         }
         // 이미 추가된 친구
-        else if (result.data === "fail") {
+        else if (result.data === "no_user") {
           alert("친구 추가에 실패하였습니다. 친구 아이디를 다시 확인해주세요.");
         }
         // No param
+        else if (result.data === "already") {
+          alert("이미 친구인 사용자입니다.");
+        }
+        else if (result.data === "me") {
+          alert("본인은 사용자로 추가할 수 없습니다.");
+        }
         else {
-          alert("친구 추가에 실패하였습니다.");
+          alert("친구추가에 실패했습니다.");
         }
       })
       .catch(() => {
