@@ -107,14 +107,14 @@ function Login() {
             로그인
           </Button>
         </Form.Group>
-        <Form.Group>
+        {/* <Form.Group>
           <Link to="/findID" className="m-1">
             아이디 찾기
           </Link>
           <Link to="/findPW" className="m-1">
             비밀번호 찾기
           </Link>
-        </Form.Group>
+        </Form.Group> */}
       </Form>
     </Container>
   );
