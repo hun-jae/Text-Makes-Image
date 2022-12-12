@@ -43,6 +43,7 @@ function AddFriend() {
   };
   const onError = (errors) => {
     console.log(errors);
+    alert(errors.fid.message);
   };
   return (
     <div>
