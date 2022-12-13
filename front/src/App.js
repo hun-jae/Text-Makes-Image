@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="App">
       <style type="text/css">
-   {`
+        {`
     //     html, body{
     //       height:100%;
     //     }
@@ -39,7 +39,7 @@ function App() {
     }
     `}
       </style>
-      <OffcanvasNav id="topNav"/>
+      <OffcanvasNav id="topNav" />
       <div id="bodyContent">
         <Routes>
           <Route path="/" element={isLogin() ? <MainPage /> : <Home />} />

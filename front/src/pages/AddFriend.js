@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import api from "../components/api";
 
 function AddFriend() {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-      } = useForm({ mode: "onBlur" });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: "onBlur" });
 
   const onSubmit = async (data) => {
     const friend = await api
@@ -29,11 +29,9 @@ function AddFriend() {
         // No param
         else if (result.data === "already") {
           alert("이미 친구인 사용자입니다.");
-        }
-        else if (result.data === "me") {
+        } else if (result.data === "me") {
           alert("본인은 친구로 추가할 수 없습니다.");
-        }
-        else {
+        } else {
           alert("친구추가에 실패했습니다.");
         }
       })
@@ -54,12 +52,13 @@ function AddFriend() {
             친구 아이디
           </Form.Label>
           <Col>
-          <Form.Control
+            <Form.Control
               name="fid"
               type="text"
               placeholder="친구 아이디"
               {...register("fid", {
-                required: "친구 아이디를 입력해주세요."})}
+                required: "친구 아이디를 입력해주세요.",
+              })}
             />
           </Col>
         </Form.Group>

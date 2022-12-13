@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Row, Col, Container, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
@@ -14,14 +13,6 @@ function Login() {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    // 임시테스트용
-    // localStorage.setItem("uid", data.uid);
-    // localStorage.setItem("password", data.password);
-    // localStorage.setItem("accessToken", "defined");
-    // console.log("User", localStorage.getItem("uid"), "has logged in.");
-
-    // window.location.href = "/";
-    // console.log("로그인 시도. ID : ", data.uid, "PW : ", data.password);
     api
       .post("/login", {
         uid: data.uid,

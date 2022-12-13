@@ -12,13 +12,10 @@ function Write() {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    // console.log(data.content);
-    // alert(data.content)
-    // navigate("/imageResult");
-
     console.log("Submit Clicked!");
     console.log(data.text);
     setLoading(true);
+
     await api
       .post("/image", {
         uid: localStorage.getItem("uid"),

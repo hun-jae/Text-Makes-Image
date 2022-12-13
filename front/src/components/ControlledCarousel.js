@@ -31,12 +31,10 @@ function ControlledCarousel(props) {
       });
   };
 
-  useEffect(() => { 
+  useEffect(() => {
     getPosts();
     console.log(data);
   }, []);
-
-  useEffect(() => {}, []);
 
   return (
     <div>
@@ -64,34 +62,40 @@ function ControlledCarousel(props) {
           {props.data.map((i, idx) => {
             return (
               <Carousel.Item>
-                <img className="d-block w-100 NO-CACHE" src={i.url+"?"+Date.now()} alt={idx} />
+                <img
+                  className="d-block w-100 NO-CACHE"
+                  src={i.url + "?" + Date.now()}
+                  alt={idx}
+                />
                 <Carousel.Caption>
-                  {localStorage.getItem("uid")===props.uid&&<Button
-                    id="reloadBtn"
-                    onClick={async () => {
-                      setLoading(true);
+                  {localStorage.getItem("uid") === props.uid && (
+                    <Button
+                      id="reloadBtn"
+                      onClick={async () => {
+                        setLoading(true);
 
-                      await api
-                        .post("/reimage", {
-                          uid: localStorage.getItem("uid"),
-                          text: i.text,
-                        })
-                        .then((response) => {
-                          if (response.data === "remake Success") {
-                            setLoading(false);
-                            window.location.reload();
-                          } else {
-                            alert("이미지 재생성 실패");
-                          }
-                        })
-                        .catch((error) => {
-                          console.log(error);
-                        });
-                    }}
-                  >
-                    <TfiReload size={24} />
-                  </Button>}
-                  
+                        await api
+                          .post("/reimage", {
+                            uid: localStorage.getItem("uid"),
+                            text: i.text,
+                          })
+                          .then((response) => {
+                            if (response.data === "remake Success") {
+                              setLoading(false);
+                              window.location.reload();
+                            } else {
+                              alert("이미지 재생성 실패");
+                            }
+                          })
+                          .catch((error) => {
+                            console.log(error);
+                          });
+                      }}
+                    >
+                      <TfiReload size={24} />
+                    </Button>
+                  )}
+
                   <h4 className="carouselText">{i.text}</h4>
                 </Carousel.Caption>
               </Carousel.Item>

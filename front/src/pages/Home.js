@@ -28,35 +28,36 @@ function Home() {
       <div>
         <div id="mainPageHeader">Text-Makes-Image</div>
         <Carousel></Carousel>
-        {isLogin()
-        ?<Button
-        className="homeUnloggedInBtn"
-        onClick={() => {
-          navigate("/write");
-        }}
-      >
-        Write
-      </Button>
-        :<div className="btnGroup">
-        <Button
-          className="homeUnloggedInBtn"
-          onClick={() => {
-            navigate("/login");
-          }}
-        >
-          Login
-        </Button>
-        <Button
-          className="homeUnloggedInBtn"
-          onClick={() => {
-            navigate("/join");
-          }}
-        >
-          Join
-        </Button>
-      </div>}
-      
-    </div>
+        {isLogin() ? (
+          <Button
+            className="homeUnloggedInBtn"
+            onClick={() => {
+              navigate("/write");
+            }}
+          >
+            Write
+          </Button>
+        ) : (
+          <div className="btnGroup">
+            <Button
+              className="homeUnloggedInBtn"
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Login
+            </Button>
+            <Button
+              className="homeUnloggedInBtn"
+              onClick={() => {
+                navigate("/join");
+              }}
+            >
+              Join
+            </Button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

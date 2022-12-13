@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import ControlledCarousel from "../components/ControlledCarousel";
 
 function Posts() {
-  const {state} = useLocation();
-  
+  const { state } = useLocation();
+
   return (
     <div>
       <style type="text/css">
@@ -18,9 +18,7 @@ function Posts() {
     `}
       </style>
       <div>
-        {/* <img className="contentImg" src={state.url} />
-        <div className="sContent">{state.pid}</div> */}
-        <ControlledCarousel data={state.data} uid={state.uid}/>
+        <ControlledCarousel data={state.data} uid={state.uid} />
       </div>
     </div>
   );

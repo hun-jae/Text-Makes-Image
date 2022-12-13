@@ -9,21 +9,20 @@ function History() {
 
   const getHistory = async () => {
     const history = await api
-    .post("/history", {
-      uid : localStorage.getItem("uid")
-    })
-    .then((result) => {
-      if(result.data === "No Param"){
-        setData([]);
-      }
-      else{
-        setData(result.data); // 썸네일 사진들 url
-      }
-    })
-    .catch(() => {
-      console.log("failed to load data");
-    });
-  }
+      .post("/history", {
+        uid: localStorage.getItem("uid"),
+      })
+      .then((result) => {
+        if (result.data === "No Param") {
+          setData([]);
+        } else {
+          setData(result.data); // 썸네일 사진들 url
+        }
+      })
+      .catch(() => {
+        console.log("failed to load data");
+      });
+  };
 
   useEffect(() => {
     getHistory();
@@ -33,7 +32,8 @@ function History() {
 
   return (
     <div>
-      <style>{`
+      <style>
+        {`
       .historyImg{
         width:33%;
         padding:3px;
@@ -44,22 +44,29 @@ function History() {
         {localStorage.getItem("uid") + "님의 History"}
       </div>
       {data.map((i, idx) => {
-        return <img
-        className="col-md-4 NO-CACHE historyImg"
-        src={i.url+"?"+Date.now()}
-        onClick={async ()=>{
-          await api.post("/posts", {
-            pid: i.pid
-          }).then((result)=>{
-            navigate("/posts", {state:{
-              data:result.data,
-              uid:localStorage.getItem("uid")
-            }})}
-          ).catch(()=>{
-            console.log("failed to load post.")
-          })
-          }}
-      />
+        return (
+          <img
+            className="col-md-4 NO-CACHE historyImg"
+            src={i.url + "?" + Date.now()}
+            onClick={async () => {
+              await api
+                .post("/posts", {
+                  pid: i.pid,
+                })
+                .then((result) => {
+                  navigate("/posts", {
+                    state: {
+                      data: result.data,
+                      uid: localStorage.getItem("uid"),
+                    },
+                  });
+                })
+                .catch(() => {
+                  console.log("failed to load post.");
+                });
+            }}
+          />
+        );
       })}
     </div>
   );
