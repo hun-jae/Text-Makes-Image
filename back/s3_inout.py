@@ -4,8 +4,8 @@ def s3_connection():
         s3 = boto3.client(
             service_name="s3",
             region_name="ap-northeast-2", # 자신이 설정한 bucket region
-            aws_access_key_id="AKIA4G67N4IM4RRYZHND",
-            aws_secret_access_key="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",
+            aws_access_key_id="",
+            aws_secret_access_key="",
         )
     except Exception as e:
         print(e)
@@ -23,8 +23,8 @@ def s3_put_object(s3, bucket, filepath, filename, uid):
     """
     s3_client = boto3.client(
       's3',
-      aws_access_key_id="AKIA4G67N4IM4RRYZHND",
-      aws_secret_access_key="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",
+      aws_access_key_id="",
+      aws_secret_access_key="",
     )
     filename = uid+'_'+filename
     try:
