@@ -1,7 +1,7 @@
 from pymongo import MongoClient # mongoDB 접속을 비롯한 액션을 할 때 사용하는 lib
 import requests #python file에서 웹 접속이 필요할 때 사용하는 lib
 import pandas as pd #dataframe 단위 작업을 할 때 사용하는 lib
-mongo_path = f"mongodb+srv://Jaeheon:2679@cluster0.r2beulp.mongodb.net/?retryWrites=true&w=majority"
+mongo_path = f""
 
 s3_base_url = "https://tmi-s3.s3.ap-northeast-2.amazonaws.com/"
 #썸네일이랑 유저는 처음 유저 생성시 만들어지고, 수정위주로 사용할 예정
